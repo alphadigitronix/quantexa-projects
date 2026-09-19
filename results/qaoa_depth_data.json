@@ -1,0 +1,34 @@
+{
+  "1": {
+    "p": 1,
+    "max_iterations": 40,
+    "mean_ratio": 0.9031,
+    "std_ratio": 0.0792,
+    "ci_95": 0.0347,
+    "exact_hit_rate": 0.25
+  },
+  "2": {
+    "p": 2,
+    "max_iterations": 60,
+    "mean_ratio": 0.9025,
+    "std_ratio": 0.0787,
+    "ci_95": 0.0345,
+    "exact_hit_rate": 0.25
+  },
+  "3": {
+    "p": 3,
+    "max_iterations": 80,
+    "mean_ratio": 0.9217,
+    "std_ratio": 0.0972,
+    "ci_95": 0.0426,
+    "exact_hit_rate": 0.4
+  },
+  "4": {
+    "p": 4,
+    "max_iterations": 100,
+    "mean_ratio": 0.9545,
+    "std_ratio": 0.0564,
+    "ci_95": 0.0247,
+    "exact_hit_rate": 0.55
+  }
+}

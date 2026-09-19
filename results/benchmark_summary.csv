@@ -1,0 +1,5 @@
+Scenario,Scenario_ID,Controller,Avg Wait (s),Wait Mean (s),Wait Std (s),Wait 95% CI,Avg Ped Wait (s),Throughput (cpm),Avg Queue,Est. Fuel (L),Est. CO2 (kg),Phase Switches,Ambulance Time (s),Extra Delay (s),QAOA Approx Ratio,Exact Hit %
+Rush-Hour (3x Arterial Demand),rush_hour,Fixed-Timing Baseline,105.20 +/- 3.15,105.2,3.15,"[103.82, 106.58]",7.65 +/- 0.74,105.2 +/- 1.8,295.3 +/- 11.5,37.02 +/- 1.47,85.51 +/- 3.39,114.0 +/- 0.0,25.1 +/- 15.7,0.00 +/- 0.00,,
+Rush-Hour (3x Arterial Demand),rush_hour,Rule-Based (Longest Queue),80.47 +/- 5.53,80.47,5.53,"[78.05, 82.89]",8.75 +/- 1.45,117.9 +/- 1.5,219.7 +/- 18.0,28.41 +/- 2.33,65.63 +/- 5.38,154.6 +/- 6.8,29.1 +/- 13.6,0.00 +/- 0.00,,
+Rush-Hour (3x Arterial Demand),rush_hour,Hybrid (Brute-Force),81.91 +/- 4.64,81.91,4.64,"[79.88, 83.94]",6.99 +/- 1.16,117.5 +/- 1.7,223.3 +/- 15.6,28.89 +/- 1.99,66.73 +/- 4.60,156.4 +/- 7.1,9.2 +/- 2.2,0.00 +/- 0.00,,
+Rush-Hour (3x Arterial Demand),rush_hour,Hybrid (QAOA),87.57 +/- 4.88,87.57,4.88,"[85.44, 89.71]",7.43 +/- 0.92,115.1 +/- 1.9,238.9 +/- 16.0,30.94 +/- 2.10,71.46 +/- 4.86,155.6 +/- 8.7,8.5 +/- 1.5,0.00 +/- 0.00,0.9250 +/- 0.0896,36.4%

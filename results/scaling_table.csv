@@ -1,0 +1,12 @@
+intersections_N,search_space_states,runtime_seconds,evaluations_per_sec,measurement_type
+4,16,0.00021,75082.1,Measured
+6,64,0.00025,251968.5,Measured
+8,256,0.00117,217928.0,Measured
+10,1024,0.00447,229108.4,Measured
+12,4096,0.04288,95526.8,Measured
+14,16384,0.08249,198606.7,Measured
+16,65536,0.37016,177045.8,Measured
+18,262144,1.3977,187554.3,Measured
+20,1048576,8.09737,129495.9,Measured
+22,4194304,25.47,164698.7,Projected (Extrapolated)
+24,16777216,101.87,164698.7,Projected (Extrapolated)

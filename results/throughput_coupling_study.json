@@ -1,0 +1,66 @@
+{
+  "tuning_scores_training_seeds": {
+    "0.0": 49.753,
+    "0.05": 49.727999999999994,
+    "0.1": 49.413,
+    "0.2": 49.474999999999994,
+    "0.5": 48.361000000000004
+  },
+  "selected_w_tc": 0.5,
+  "evaluations": {
+    "rush_hour": {
+      "uncoupled_wait_mean": 80.88,
+      "uncoupled_wait_ci": [
+        78.45,
+        83.3
+      ],
+      "coupled_wait_mean": 77.19,
+      "coupled_wait_ci": [
+        74.77,
+        79.61
+      ],
+      "rule_tuned_wait_mean": 81.15,
+      "rule_tuned_wait_ci": [
+        78.84,
+        83.47
+      ],
+      "paired_diff_vs_uncoupled_mean": -3.68,
+      "paired_diff_vs_uncoupled_ci": [
+        -4.84,
+        -2.53
+      ],
+      "paired_diff_vs_rule_mean": -3.96,
+      "paired_diff_vs_rule_ci": [
+        -4.93,
+        -2.99
+      ]
+    },
+    "surge_accident": {
+      "uncoupled_wait_mean": 98.67,
+      "uncoupled_wait_ci": [
+        96.28,
+        101.07
+      ],
+      "coupled_wait_mean": 91.45,
+      "coupled_wait_ci": [
+        89.45,
+        93.45
+      ],
+      "rule_tuned_wait_mean": 99.05,
+      "rule_tuned_wait_ci": [
+        96.64,
+        101.46
+      ],
+      "paired_diff_vs_uncoupled_mean": -7.22,
+      "paired_diff_vs_uncoupled_ci": [
+        -8.47,
+        -5.97
+      ],
+      "paired_diff_vs_rule_mean": -7.6,
+      "paired_diff_vs_rule_ci": [
+        -8.81,
+        -6.38
+      ]
+    }
+  }
+}

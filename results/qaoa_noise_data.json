@@ -1,0 +1,50 @@
+{
+  "Ideal (Noiseless)": {
+    "noise_rate": 0.0,
+    "mean_ratio": 0.6899,
+    "std_ratio": 0.0761,
+    "ci_95": 0.0333,
+    "ci_range": [
+      0.6565,
+      0.7232
+    ],
+    "mean_top_prob": 0.1686,
+    "n_snapshots": 20
+  },
+  "Low (p=0.005)": {
+    "noise_rate": 0.005,
+    "mean_ratio": 0.6809,
+    "std_ratio": 0.0728,
+    "ci_95": 0.0319,
+    "ci_range": [
+      0.649,
+      0.7128
+    ],
+    "mean_top_prob": 0.1524,
+    "n_snapshots": 20
+  },
+  "Medium (p=0.02)": {
+    "noise_rate": 0.02,
+    "mean_ratio": 0.6564,
+    "std_ratio": 0.0638,
+    "ci_95": 0.028,
+    "ci_range": [
+      0.6284,
+      0.6844
+    ],
+    "mean_top_prob": 0.1146,
+    "n_snapshots": 20
+  },
+  "High (p=0.05)": {
+    "noise_rate": 0.05,
+    "mean_ratio": 0.6163,
+    "std_ratio": 0.0489,
+    "ci_95": 0.0214,
+    "ci_range": [
+      0.5948,
+      0.6377
+    ],
+    "mean_top_prob": 0.0702,
+    "n_snapshots": 20
+  }
+}

@@ -1,0 +1,23 @@
+# Environment and secrets
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+
+# Ultralytics / ML weights
+*.pt
+*.onnx
+
+# IDE
+.vscode/
+.idea/
+
+# Benchmark Checkpoints & Logs
+results/checkpoints/
+*.log

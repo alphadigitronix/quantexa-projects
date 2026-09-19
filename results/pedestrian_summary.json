@@ -1,0 +1,322 @@
+[
+  {
+    "scenario": "balanced",
+    "controller": "Fixed-Timing Baseline",
+    "n_seeds": 20,
+    "ped_wait_mean": 7.65,
+    "ped_wait_ci": [
+      7.3,
+      8.01
+    ],
+    "paired_diff_vs_fixed": 0.0,
+    "paired_ci_vs_fixed": [
+      0.0,
+      0.0
+    ],
+    "paired_diff_vs_rule": 3.36,
+    "paired_ci_vs_rule": [
+      2.89,
+      3.84
+    ]
+  },
+  {
+    "scenario": "balanced",
+    "controller": "Rule-Based (Longest Queue)",
+    "n_seeds": 20,
+    "ped_wait_mean": 4.29,
+    "ped_wait_ci": [
+      3.98,
+      4.6
+    ],
+    "paired_diff_vs_fixed": -3.36,
+    "paired_ci_vs_fixed": [
+      -3.84,
+      -2.89
+    ],
+    "paired_diff_vs_rule": 0.0,
+    "paired_ci_vs_rule": [
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scenario": "balanced",
+    "controller": "Hybrid (Brute-Force)",
+    "n_seeds": 20,
+    "ped_wait_mean": 3.52,
+    "ped_wait_ci": [
+      3.32,
+      3.72
+    ],
+    "paired_diff_vs_fixed": -4.13,
+    "paired_ci_vs_fixed": [
+      -4.51,
+      -3.75
+    ],
+    "paired_diff_vs_rule": -0.77,
+    "paired_ci_vs_rule": [
+      -1.12,
+      -0.42
+    ]
+  },
+  {
+    "scenario": "balanced",
+    "controller": "Hybrid (QAOA)",
+    "n_seeds": 20,
+    "ped_wait_mean": 4.35,
+    "ped_wait_ci": [
+      4.02,
+      4.67
+    ],
+    "paired_diff_vs_fixed": -3.31,
+    "paired_ci_vs_fixed": [
+      -3.84,
+      -2.78
+    ],
+    "paired_diff_vs_rule": 0.06,
+    "paired_ci_vs_rule": [
+      -0.29,
+      0.4
+    ]
+  },
+  {
+    "scenario": "moderate_load",
+    "controller": "Fixed-Timing Baseline",
+    "n_seeds": 20,
+    "ped_wait_mean": 7.65,
+    "ped_wait_ci": [
+      7.3,
+      8.01
+    ],
+    "paired_diff_vs_fixed": 0.0,
+    "paired_ci_vs_fixed": [
+      0.0,
+      0.0
+    ],
+    "paired_diff_vs_rule": 4.35,
+    "paired_ci_vs_rule": [
+      3.94,
+      4.76
+    ]
+  },
+  {
+    "scenario": "moderate_load",
+    "controller": "Rule-Based (Longest Queue)",
+    "n_seeds": 20,
+    "ped_wait_mean": 3.31,
+    "ped_wait_ci": [
+      3.15,
+      3.46
+    ],
+    "paired_diff_vs_fixed": -4.35,
+    "paired_ci_vs_fixed": [
+      -4.76,
+      -3.94
+    ],
+    "paired_diff_vs_rule": 0.0,
+    "paired_ci_vs_rule": [
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scenario": "moderate_load",
+    "controller": "Hybrid (Brute-Force)",
+    "n_seeds": 20,
+    "ped_wait_mean": 2.91,
+    "ped_wait_ci": [
+      2.79,
+      3.03
+    ],
+    "paired_diff_vs_fixed": -4.75,
+    "paired_ci_vs_fixed": [
+      -5.12,
+      -4.37
+    ],
+    "paired_diff_vs_rule": -0.4,
+    "paired_ci_vs_rule": [
+      -0.59,
+      -0.21
+    ]
+  },
+  {
+    "scenario": "moderate_load",
+    "controller": "Hybrid (QAOA)",
+    "n_seeds": 20,
+    "ped_wait_mean": 3.26,
+    "ped_wait_ci": [
+      3.04,
+      3.49
+    ],
+    "paired_diff_vs_fixed": -4.39,
+    "paired_ci_vs_fixed": [
+      -4.85,
+      -3.93
+    ],
+    "paired_diff_vs_rule": -0.04,
+    "paired_ci_vs_rule": [
+      -0.33,
+      0.24
+    ]
+  },
+  {
+    "scenario": "rush_hour",
+    "controller": "Fixed-Timing Baseline",
+    "n_seeds": 20,
+    "ped_wait_mean": 7.65,
+    "ped_wait_ci": [
+      7.3,
+      8.01
+    ],
+    "paired_diff_vs_fixed": 0.0,
+    "paired_ci_vs_fixed": [
+      0.0,
+      0.0
+    ],
+    "paired_diff_vs_rule": -1.1,
+    "paired_ci_vs_rule": [
+      -1.92,
+      -0.27
+    ]
+  },
+  {
+    "scenario": "rush_hour",
+    "controller": "Rule-Based (Longest Queue)",
+    "n_seeds": 20,
+    "ped_wait_mean": 8.75,
+    "ped_wait_ci": [
+      8.05,
+      9.44
+    ],
+    "paired_diff_vs_fixed": 1.1,
+    "paired_ci_vs_fixed": [
+      0.27,
+      1.92
+    ],
+    "paired_diff_vs_rule": 0.0,
+    "paired_ci_vs_rule": [
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scenario": "rush_hour",
+    "controller": "Hybrid (Brute-Force)",
+    "n_seeds": 20,
+    "ped_wait_mean": 6.99,
+    "ped_wait_ci": [
+      6.43,
+      7.55
+    ],
+    "paired_diff_vs_fixed": -0.66,
+    "paired_ci_vs_fixed": [
+      -1.45,
+      0.13
+    ],
+    "paired_diff_vs_rule": -1.76,
+    "paired_ci_vs_rule": [
+      -2.27,
+      -1.25
+    ]
+  },
+  {
+    "scenario": "rush_hour",
+    "controller": "Hybrid (QAOA)",
+    "n_seeds": 20,
+    "ped_wait_mean": 7.43,
+    "ped_wait_ci": [
+      6.98,
+      7.87
+    ],
+    "paired_diff_vs_fixed": -0.23,
+    "paired_ci_vs_fixed": [
+      -0.85,
+      0.39
+    ],
+    "paired_diff_vs_rule": -1.32,
+    "paired_ci_vs_rule": [
+      -1.99,
+      -0.66
+    ]
+  },
+  {
+    "scenario": "surge_accident",
+    "controller": "Fixed-Timing Baseline",
+    "n_seeds": 20,
+    "ped_wait_mean": 7.65,
+    "ped_wait_ci": [
+      7.3,
+      8.01
+    ],
+    "paired_diff_vs_fixed": 0.0,
+    "paired_ci_vs_fixed": [
+      0.0,
+      0.0
+    ],
+    "paired_diff_vs_rule": -0.12,
+    "paired_ci_vs_rule": [
+      -1.1,
+      0.86
+    ]
+  },
+  {
+    "scenario": "surge_accident",
+    "controller": "Rule-Based (Longest Queue)",
+    "n_seeds": 20,
+    "ped_wait_mean": 7.77,
+    "ped_wait_ci": [
+      6.92,
+      8.61
+    ],
+    "paired_diff_vs_fixed": 0.12,
+    "paired_ci_vs_fixed": [
+      -0.86,
+      1.1
+    ],
+    "paired_diff_vs_rule": 0.0,
+    "paired_ci_vs_rule": [
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "scenario": "surge_accident",
+    "controller": "Hybrid (Brute-Force)",
+    "n_seeds": 20,
+    "ped_wait_mean": 5.77,
+    "ped_wait_ci": [
+      5.42,
+      6.12
+    ],
+    "paired_diff_vs_fixed": -1.88,
+    "paired_ci_vs_fixed": [
+      -2.49,
+      -1.28
+    ],
+    "paired_diff_vs_rule": -2.0,
+    "paired_ci_vs_rule": [
+      -2.67,
+      -1.33
+    ]
+  },
+  {
+    "scenario": "surge_accident",
+    "controller": "Hybrid (QAOA)",
+    "n_seeds": 20,
+    "ped_wait_mean": 6.77,
+    "ped_wait_ci": [
+      6.32,
+      7.23
+    ],
+    "paired_diff_vs_fixed": -0.88,
+    "paired_ci_vs_fixed": [
+      -1.54,
+      -0.22
+    ],
+    "paired_diff_vs_rule": -1.0,
+    "paired_ci_vs_rule": [
+      -1.72,
+      -0.27
+    ]
+  }
+]

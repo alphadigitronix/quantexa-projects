@@ -1,0 +1,99 @@
+{
+  "scenario_benchmark": {
+    "script": "scripts/run_phase4_benchmark.py",
+    "duration_sec": 600,
+    "reopt_interval_sec": 10,
+    "w_switch": 1.0,
+    "w_queue": 1.0,
+    "w_coord": 0.2,
+    "w_spillback": 0.5,
+    "w_emergency": 50.0,
+    "w_pedestrian": 2.0,
+    "min_green_sec": 10,
+    "seeds": {
+      "Fixed-Timing Baseline": "100-119 (20 seeds)",
+      "Rule-Based (Longest Queue)": "100-119 (20 seeds)",
+      "Hybrid (Brute-Force)": "100-119 (20 seeds)",
+      "Hybrid (QAOA)": "100-119 (20 seeds)"
+    },
+    "generation_timestamp": "2026-09-19T18:57:09.095663+00:00"
+  },
+  "benchmark_20seeds": {
+    "script": "scripts/run_phase4_benchmark.py",
+    "duration_sec": 600,
+    "reopt_interval_sec": 10,
+    "w_switch": 1.0,
+    "w_queue": 1.0,
+    "w_coord": 0.2,
+    "w_spillback": 0.5,
+    "w_emergency": 50.0,
+    "w_pedestrian": 2.0,
+    "min_green_sec": 10,
+    "seeds": {
+      "Fixed-Timing Baseline": "100-119 (20 seeds)",
+      "Rule-Based (Longest Queue)": "100-119 (20 seeds)",
+      "Hybrid (Brute-Force)": "100-119 (20 seeds)",
+      "Hybrid (QAOA)": "100-119 (20 seeds)"
+    },
+    "generation_timestamp": "2026-09-19T18:57:09.095663+00:00"
+  },
+  "lost_time_study": {
+    "script": "scripts/run_lost_time_study.py & scripts/run_parity_tuning_and_ablation.py",
+    "training_seeds": "1-5",
+    "eval_seeds": "100-119 (20 seeds)",
+    "lost_times_sec": [0, 2, 3],
+    "tuning_protocol_limitation": "Tuning used 300s simulation runs on 5 training seeds (1-5); final evaluation used 600s simulation runs on 20 held-out evaluation seeds (100-119).",
+    "common_qubo_weights": {
+      "w_queue": 1.0,
+      "w_coord": 0.2,
+      "w_spillback": 0.5,
+      "w_emergency": 50.0,
+      "w_pedestrian": 2.0,
+      "k_queue": 0.5,
+      "spillback_threshold": 0.80
+    },
+    "hybrid_default_parameters": {
+      "0": {"reopt_interval_sec": 10, "w_switch": 1.0},
+      "2": {"reopt_interval_sec": 10, "w_switch": 2.5},
+      "3": {"reopt_interval_sec": 15, "w_switch": 2.5}
+    },
+    "hybrid_retuned_parameters": {
+      "0": {"reopt_interval_sec": 5, "w_switch": 0.0},
+      "2": {"reopt_interval_sec": 10, "w_switch": 2.5},
+      "3": {"reopt_interval_sec": 5, "w_switch": 5.0}
+    },
+    "rule_based_tuned_parameters": {
+      "0": {"eval_interval": 5, "min_green": 10, "hysteresis": 0},
+      "2": {"eval_interval": 5, "min_green": 10, "hysteresis": 3},
+      "3": {"eval_interval": 5, "min_green": 15, "hysteresis": 3}
+    },
+    "generation_timestamp": "2026-09-20T02:23:00+00:00"
+  },
+  "ablation_study": {
+    "script": "scripts/run_parity_tuning_and_ablation.py",
+    "eval_seeds": "100-119 (20 seeds)",
+    "ablation_a_greedy_diff_pct": 13.42,
+    "ablation_a_mean_bits_diff": 1.08,
+    "ablation_b_uncoupled_vs_full": "Moderate: -0.64s [-0.86, -0.42] (uncoupled faster); Rush: +0.35s [-0.35, +1.04] (tie)",
+    "generation_timestamp": "2026-09-20T02:23:00+00:00"
+  },
+  "ambulance_fairness_study": {
+    "script": "scripts/run_ambulance_fairness_study.py",
+    "warmup_dispatch_tick": 120,
+    "duration_sec": 600,
+    "eval_seeds": "100-119 (20 seeds)",
+    "route": [0, 1, 2, 5],
+    "free_flow_travel_time_sec": 24.0,
+    "csv_path": "results/ambulance_fairness.csv",
+    "json_path": "results/ambulance_fairness.json",
+    "generation_timestamp": "2026-09-20T04:11:40+00:00"
+  },
+  "throughput_coupling_study": {
+    "script": "scripts/test_throughput_coupling.py",
+    "training_seeds": "1-5 (300s)",
+    "eval_seeds": "100-119 (600s)",
+    "selected_w_tc": 0.5,
+    "json_path": "results/throughput_coupling_study.json",
+    "generation_timestamp": "2026-09-20T04:12:37+00:00"
+  }
+}
