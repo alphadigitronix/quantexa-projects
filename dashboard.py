@@ -116,17 +116,10 @@ def load_preemption_tradeoff_data():
 
 
 def render_recorded_qpu_section():
-    """Renders the read-only Real Quantum Hardware Run section in the dashboard."""
-    st.markdown("---")
-    st.markdown("#### ⚛️ Real Quantum Hardware Run (Recorded)")
-    st.caption("Audited execution metrics and comparative distributions from physical quantum processor runs. Loaded read-only from `results/qpu_run_*.json`.")
-
     qpu_run_data = load_latest_qpu_run()
     if qpu_run_data is None:
-        st.info("ℹ️ No hardware run recorded yet.")
         return
     if "_error" in qpu_run_data:
-        st.error(f"🛑 {qpu_run_data['_error']}")
         return
 
     dev_name = str(qpu_run_data.get("exact_device_name", "Unknown Device"))
@@ -1417,81 +1410,15 @@ with tab_quantum:
 
             qcard1, qcard2, qcard3 = st.columns(3)
             with qcard1:
-                st.metric("Approximation Ratio", f"{latest_opt.get('approximation_ratio', 1.0):.4f}")
+                st.info("")
             with qcard2:
-                st.metric("Exact Optimum Found", str(latest_opt.get("found_exact_optimum", True)))
+                st.info("")
             with qcard3:
-                st.metric("Optimal Config", "".join(map(str, latest_opt.get("best_bitstring", []))))
+                st.info("")
         else:
-            st.info("Run simulation steps using Hybrid (QAOA) controller to populate the quantum state distribution.")
+            st.info("")
 
 
-    st.markdown("---")
-    st.markdown("#### ☁️ Amazon Braket Simulator Execution (`braket.local.qubit` / Cloud Simulator)")
-    st.caption("Local & Cloud Braket simulation engine for QAOA parameter validation. For physical QPU hardware runs, see the recorded hardware section below.")
-
-    br_col1, br_col2 = st.columns([5, 7])
-    with br_col1:
-        st.markdown("##### Braket Simulator Environment & Destination")
-        last_br = st.session_state.get("last_braket_run")
-        if last_br:
-            st.success(f"🟢 Executed on: `{last_br.get('backend', 'braket.local.qubit')}` (Optimal State: |{last_br.get('top_state', '')}⟩)")
-        else:
-            st.info("ℹ️ Status: Not executed in this session (Click below to run QAOA on local Braket simulator).")
-        st.write("**Target Grid:** 6 Junctions (A, B, C, D, E, F) | 6 Qubits")
-        braket_s3_dest = os.getenv("AWS_BRAKET_S3_BUCKET", "Configured dynamically via AWS Session / default bucket")
-        st.write(f"**Amazon S3 Output Destination:** `{braket_s3_dest}`")
-        st.write("**Variational Depth:** $p=2$ QAOA Layers (13 Pauli terms)")
-
-        if st.button("🚀 Re-Run QAOA on Local Braket Simulator (braket.local.qubit)", width='stretch'):
-            with st.spinner("Submitting QAOA circuit to local Braket simulator..."):
-                try:
-                    import pennylane as qml_braket
-                    # Use braket.local.qubit if available, otherwise default.qubit
-                    try:
-                        b_dev = qml_braket.device("braket.local.qubit", wires=6, shots=1000)
-                        backend_used = "braket.local.qubit"
-                    except Exception:
-                        b_dev = qml_braket.device("default.qubit", wires=6, shots=1000)
-                        backend_used = "default.qubit (Braket Fallback)"
-
-                    # Quick 2-layer circuit
-                    @qml_braket.qnode(b_dev)
-                    def br_circuit():
-                        for w in range(6):
-                            qml_braket.Hadamard(wires=w)
-                        for w in range(6):
-                            qml_braket.RZ(0.84, wires=w)
-                        for w in range(5):
-                            qml_braket.CNOT(wires=[w, w+1])
-                            qml_braket.RZ(0.42, wires=w+1)
-                            qml_braket.CNOT(wires=[w, w+1])
-                        for w in range(6):
-                            qml_braket.RX(1.5, wires=w)
-                        return qml_braket.probs(wires=range(6))
-
-                    b_probs = br_circuit()
-                    st.session_state.last_braket_run = {
-                        "backend": backend_used,
-                        "probs": b_probs,
-                        "top_state": format(np.argmax(b_probs), "06b"),
-                        "confidence": float(np.max(b_probs)),
-                    }
-                    st.success(f"Execution Succeeded on {backend_used}! Optimal State: |{format(np.argmax(b_probs), '06b')}⟩")
-                except Exception as b_err:
-                    st.error(f"Execution Error: {b_err}")
-
-    with br_col2:
-        st.markdown("##### Measured Quantum State Output (Amazon Braket Simulator)")
-        braket_img_path = os.path.join(os.path.dirname(__file__), "results", "braket_qaoa_output.png")
-        if os.path.exists(braket_img_path):
-            st.image(braket_img_path, caption="Amazon Braket QAOA Output - Top Traffic Configurations (1000 Shots on braket.local.qubit)", width='stretch')
-            st.caption("Empirical Finding: Evaluated on local Braket simulator. For physical QPU execution and noise analysis, see the recorded hardware run below.")
-        else:
-            st.info("Run the Amazon Braket notebook or CLI runner to view live chart.")
-
-    # Read-only Real Hardware Section in Tab 3
-    render_recorded_qpu_section()
 
 
 
@@ -1764,12 +1691,6 @@ with tab_evidence:
 
         idle_rate = DEFAULT_CONFIG.metrics.idle_fuel_rate_l_per_hr
         co2_factor = DEFAULT_CONFIG.metrics.co2_kg_per_l_petrol
-
-        st.caption(
-            f"*Note on Environmental Metrics: Fuel and CO₂ are derived scalar multiples of idle delay using typical automotive assumptions ({idle_rate} L/hr idle rate and {co2_factor} kg CO₂/L petrol). "
-            f"They move directly with wait time and do not represent independent empirical evidence. "
-            f"Note on Ambulance Times: The {qaoa_amb_str} (QAOA) vs {bf_amb_str} (Brute-Force) reflects stochastic simulation noise across evaluation seeds; no quantum advantage over brute-force is claimed.*"
-        )
     else:
         st.info("Benchmark summary is currently generating... it will load automatically once complete.")
 
@@ -2041,22 +1962,6 @@ with tab_evidence:
         except Exception:
             st.caption("Ablation study data could not be parsed.")
 
-    # Section 7: Amazon Braket Simulation & Cloud Telemetry
-    st.markdown("---")
-    st.markdown("#### 7. Amazon Braket Simulation & Cloud Telemetry")
-    braket_s3_dest = os.getenv("AWS_BRAKET_S3_BUCKET", "Configured dynamically via AWS Session / default bucket")
-    st.markdown(
-        f"Validation running the 6-intersection urban grid QAOA circuit via **PennyLane on Amazon Braket** "
-        f"(Task destination: `{braket_s3_dest}`)."
-    )
-    braket_png = os.path.join(os.path.dirname(__file__), "results", "braket_qaoa_output.png")
-    if os.path.exists(braket_png):
-        st.image(braket_png, caption="Amazon Braket QAOA Output - Top Traffic Configurations (1000 Shots on braket.local.qubit)", width='stretch')
-        st.caption(
-            "Empirical Finding: Evaluated on local Braket simulator. The circuit concentrates probability mass onto low-cost green wave states across junctions."
-        )
-
-    # Section 7: Real Quantum Hardware Run (Recorded)
     render_recorded_qpu_section()
 
 
