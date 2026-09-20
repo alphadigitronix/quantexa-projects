@@ -1,0 +1,146 @@
+{
+  "balanced": {
+    "scenario_name": "Balanced Flow (Uniform Demand)",
+    "saturation_label": "Oversaturated (Unbounded Queues)",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 107.36,
+      "hybrid_value": 131.92,
+      "diff_to_hybrid": 24.56
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed-Timing Baseline",
+      "value": 239.76
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 133.89
+    }
+  },
+  "moderate_load": {
+    "scenario_name": "Moderate Load (75-80% Saturation)",
+    "saturation_label": "Bounded (75-80% Saturation)",
+    "best_on_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 27.93,
+      "hybrid_value": 34.64,
+      "diff_to_hybrid": 6.71
+    },
+    "best_on_p95_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 56.82
+    },
+    "best_on_throughput": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 99.28
+    }
+  },
+  "directional_moderate": {
+    "scenario_name": "Directional Moderate (Lopsided Bounded)",
+    "saturation_label": "Bounded (75-85% Saturation, Asymmetric)",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 37.37,
+      "hybrid_value": 41.47,
+      "diff_to_hybrid": 4.1
+    },
+    "best_on_p95_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 77.24
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 97.65
+    }
+  },
+  "incident_moderate": {
+    "scenario_name": "Incident Moderate (Moderate + Lane Closure)",
+    "saturation_label": "Bounded + Bottleneck Incident",
+    "best_on_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 34.89,
+      "hybrid_value": 42.42,
+      "diff_to_hybrid": 7.53
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 81.01
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 97.96
+    }
+  },
+  "shifting_demand": {
+    "scenario_name": "Shifting Demand (Dynamic Corridor Swap)",
+    "saturation_label": "Bounded (Dynamic Split Swap)",
+    "best_on_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 39.29,
+      "hybrid_value": 39.55,
+      "diff_to_hybrid": 0.26
+    },
+    "best_on_p95_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 90.69
+    },
+    "best_on_throughput": {
+      "controller": "Rule-Based (tuned)",
+      "value": 107.59
+    }
+  },
+  "surge_moderate": {
+    "scenario_name": "Surge Moderate (Moderate + 3x Arterial Burst)",
+    "saturation_label": "Bounded + Transient Burst",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 54.37,
+      "hybrid_value": 66.74,
+      "diff_to_hybrid": 12.37
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 124.55
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 109.16
+    }
+  },
+  "rush_hour": {
+    "scenario_name": "Rush-Hour (3x Arterial Demand)",
+    "saturation_label": "Oversaturated (Arterial Dominance)",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 93.75,
+      "hybrid_value": 104.5,
+      "diff_to_hybrid": 10.75
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 175.15
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 113.92
+    }
+  },
+  "surge_accident": {
+    "scenario_name": "Surge + Incident (Lane Closure)",
+    "saturation_label": "Oversaturated + Bottleneck Incident",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 111.49,
+      "hybrid_value": 129.02,
+      "diff_to_hybrid": 17.53
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 235.25
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 116.84
+    }
+  }
+}

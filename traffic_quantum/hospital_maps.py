@@ -11,11 +11,22 @@ Standalone full-page interface for emergency medical vehicle navigation:
 """
 
 import json
+import os
+import time
+from datetime import datetime, timezone
+from typing import Dict, List, Optional, Tuple
+import bcrypt
 import streamlit as st
 import streamlit.components.v1 as components
 
+from traffic_quantum.security import SecurityService
 
-def generate_hospital_maps_html() -> str:
+
+def generate_hospital_maps_html(
+    driver_name: str = "Rajesh Kumar",
+    vehicle_number: str = "TN-09-EMS-108",
+    hospital: str = "Apollo Hospitals (Greams Road)",
+) -> str:
     """Generate self-contained HTML/CSS/JS application for Paramedic Google Maps."""
     html_content = """<!DOCTYPE html>
 <html lang="en">
@@ -380,11 +391,6 @@ def generate_hospital_maps_html() -> str:
                     <span>CHENNAI EMS 108</span>
                 </div>
                 <div class="cad-badge">STANDALONE NAV DEMO</div>
-            </div>
-
-            <div style="background: rgba(245, 158, 11, 0.12); border-bottom: 1px solid rgba(245, 158, 11, 0.4); padding: 9px 16px; font-size: 0.74rem; color: #fde68a; display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-triangle-exclamation" style="color: #fbbf24; font-size: 0.85rem; flex-shrink: 0;"></i>
-                <span><strong>Standalone Navigation Demo</strong>: Uses public map tiles and OSRM routing. Not wired to the quantum traffic signal simulator backend.</span>
             </div>
 
             <div class="console-body">
@@ -827,12 +833,305 @@ def generate_hospital_maps_html() -> str:
 </body>
 </html>
 """
+    html_content = html_content.replace(
+        '<div class="cad-badge">STANDALONE NAV DEMO</div>',
+        f'<div class="cad-badge">UNIT {vehicle_number} | {driver_name}</div>'
+    )
+    html_content = html_content.replace(
+        'value="AMB-108 (ALS Trauma Pod)"',
+        f'value="{vehicle_number} ({driver_name})"'
+    )
     return html_content
 
 
+EMS_DRIVERS_FILE = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "results", "ems_drivers.json"
+)
+
+
+def hash_pin(pin: str) -> str:
+    """Hashes a security PIN/password using bcrypt with salt. Requires >= 6 characters."""
+    pin_clean = str(pin).strip()
+    if len(pin_clean) < 6:
+        raise ValueError("Security PIN / Password must be at least 6 characters.")
+    salt = bcrypt.gensalt(rounds=10)
+    return bcrypt.hashpw(pin_clean.encode("utf-8"), salt).decode("utf-8")
+
+
+def verify_pin(pin: str, stored_hash_or_pin: str) -> bool:
+    """Verifies a PIN against a bcrypt hash or legacy pin."""
+    if not stored_hash_or_pin:
+        return False
+    pin_str = str(pin).strip()
+    if stored_hash_or_pin.startswith("$2b$") or stored_hash_or_pin.startswith("$2a$"):
+        try:
+            return bcrypt.checkpw(pin_str.encode("utf-8"), stored_hash_or_pin.encode("utf-8"))
+        except Exception:
+            return False
+    return pin_str == stored_hash_or_pin
+
+
+def load_registered_drivers() -> dict:
+    """Load registered ambulance drivers from persistent disk storage."""
+    if os.path.exists(EMS_DRIVERS_FILE):
+        try:
+            with open(EMS_DRIVERS_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, dict) and len(data) > 0:
+                    return data
+        except Exception:
+            pass
+
+    # Default seed fleet with APPROVED status and bcrypt hashes for default PIN '108080'
+    default_fleet = {
+        "TN-09-EMS-108": {
+            "name": "Rajesh Kumar",
+            "vehicle_number": "TN-09-EMS-108",
+            "phone": "+91 98401 10801",
+            "vehicle_type": "Advanced Life Support (ALS Trauma Pod)",
+            "hospital": "Apollo Hospitals (Greams Road)",
+            "pin": "108080",
+            "pin_hash": hash_pin("108080"),
+            "status": "APPROVED",
+            "registered_at": "2026-09-18T10:00:00Z",
+            "approved_by": "cad_system",
+            "failed_attempts": 0,
+            "lockout_until": 0.0,
+            "lockout_count": 0,
+        },
+        "TN-01-EMS-102": {
+            "name": "Kavitha Sundaram",
+            "vehicle_number": "TN-01-EMS-102",
+            "phone": "+91 98402 10802",
+            "vehicle_type": "Basic Life Support (BLS Quick Response)",
+            "hospital": "Rajiv Gandhi Govt General Hospital",
+            "pin": "108080",
+            "pin_hash": hash_pin("108080"),
+            "status": "APPROVED",
+            "registered_at": "2026-09-18T11:00:00Z",
+            "approved_by": "cad_system",
+            "failed_attempts": 0,
+            "lockout_until": 0.0,
+            "lockout_count": 0,
+        },
+    }
+    try:
+        os.makedirs(os.path.dirname(EMS_DRIVERS_FILE), exist_ok=True)
+        with open(EMS_DRIVERS_FILE, "w", encoding="utf-8") as f:
+            json.dump(default_fleet, f, indent=2)
+    except Exception:
+        pass
+    return default_fleet
+
+
+def register_driver(
+    name: str,
+    vehicle_number: str,
+    phone: str,
+    vehicle_type: str,
+    hospital: str,
+    pin: str,
+) -> Tuple[bool, str, dict]:
+    """Registers an ambulance driver creating a PENDING account for dispatcher approval."""
+    pin_clean = str(pin).strip()
+    if len(pin_clean) < 6:
+        return False, "Security PIN / Password must be at least 6 characters.", {}
+
+    drivers = load_registered_drivers()
+    v_key = vehicle_number.strip().upper()
+    hashed = hash_pin(pin_clean)
+
+    record = {
+        "name": name.strip(),
+        "vehicle_number": v_key,
+        "phone": phone.strip(),
+        "vehicle_type": vehicle_type,
+        "hospital": hospital,
+        "pin_hash": hashed,
+        "status": "PENDING",
+        "registered_at": datetime.now(timezone.utc).isoformat(),
+        "approved_by": None,
+        "failed_attempts": 0,
+        "lockout_until": 0.0,
+        "lockout_count": 0,
+    }
+    drivers[v_key] = record
+
+    try:
+        os.makedirs(os.path.dirname(EMS_DRIVERS_FILE), exist_ok=True)
+        with open(EMS_DRIVERS_FILE, "w", encoding="utf-8") as f:
+            json.dump(drivers, f, indent=2)
+    except Exception:
+        pass
+
+    sec = SecurityService()
+    sec.log_audit_entry(
+        client_id=v_key,
+        action="driver_registration",
+        details={"name": name, "hospital": hospital, "vehicle_type": vehicle_type, "status": "PENDING"},
+        outcome="SUCCESS",
+    )
+    return True, "Registration submitted. Account is PENDING dispatcher approval before login.", record
+
+
+def approve_driver(vehicle_number: str, approved_by: str = "cad_dispatcher") -> Tuple[bool, str]:
+    """Approves a PENDING ambulance driver account."""
+    drivers = load_registered_drivers()
+    v_key = vehicle_number.strip().upper()
+    if v_key not in drivers:
+        return False, f"Vehicle {v_key} not found."
+
+    drivers[v_key]["status"] = "APPROVED"
+    drivers[v_key]["approved_by"] = approved_by
+    drivers[v_key]["approved_at"] = datetime.now(timezone.utc).isoformat()
+
+    try:
+        with open(EMS_DRIVERS_FILE, "w", encoding="utf-8") as f:
+            json.dump(drivers, f, indent=2)
+    except Exception:
+        pass
+
+    sec = SecurityService()
+    sec.log_audit_entry(
+        client_id=v_key,
+        action="driver_approval",
+        details={"approved_by": approved_by, "driver_name": drivers[v_key].get("name")},
+        outcome="APPROVED",
+    )
+    return True, f"Vehicle {v_key} approved by {approved_by}."
+
+
+def authenticate_driver(
+    vehicle_number: str,
+    pin: str,
+) -> Tuple[bool, str, Optional[dict], Optional[str]]:
+    """Authenticates driver credentials, enforces PENDING status and lockout with exponential backoff, and issues JWT."""
+    sec = SecurityService()
+    drivers = load_registered_drivers()
+    v_key = vehicle_number.strip().upper()
+    if v_key not in drivers:
+        sec.log_audit_entry(
+            client_id=v_key,
+            action="driver_login_failed",
+            details={"reason": "vehicle_not_found"},
+            outcome="FAILED_UNKNOWN_VEHICLE",
+        )
+        return False, "Ambulance registration number not found.", None, None
+
+    d = drivers[v_key]
+    now = time.time()
+
+    # 1. Lockout check
+    lockout_until = d.get("lockout_until", 0.0)
+    if lockout_until > now:
+        rem = int(lockout_until - now)
+        sec.log_audit_entry(
+            client_id=v_key,
+            action="driver_login_blocked",
+            details={"lockout_remaining_sec": rem},
+            outcome="LOCKED_OUT",
+        )
+        return False, f"Account is locked due to excessive failed attempts. Please retry in {rem} seconds.", None, None
+
+    # 2. Status check (PENDING accounts cannot log in)
+    status = d.get("status", "PENDING")
+    if status == "PENDING":
+        sec.log_audit_entry(
+            client_id=v_key,
+            action="driver_login_blocked",
+            details={"reason": "pending_approval"},
+            outcome="PENDING_APPROVAL",
+        )
+        return False, "Account registration is PENDING approval by CAD Dispatcher / Administrator. Login refused.", None, None
+
+    if status == "REJECTED":
+        return False, "Account registration was rejected by CAD Dispatcher.", None, None
+
+    # 3. Verify PIN / Password
+    stored_hash = d.get("pin_hash") or d.get("pin", "")
+    if not verify_pin(pin, stored_hash):
+        d["failed_attempts"] = d.get("failed_attempts", 0) + 1
+        attempts = d["failed_attempts"]
+        if attempts >= 5:
+            d["lockout_count"] = d.get("lockout_count", 0) + 1
+            backoff_sec = 30 * (2 ** (d["lockout_count"] - 1))
+            d["lockout_until"] = now + backoff_sec
+            d["failed_attempts"] = 0
+            try:
+                with open(EMS_DRIVERS_FILE, "w", encoding="utf-8") as f:
+                    json.dump(drivers, f, indent=2)
+            except Exception:
+                pass
+            sec.log_audit_entry(
+                client_id=v_key,
+                action="driver_lockout",
+                details={"attempts": attempts, "lockout_sec": backoff_sec, "lockout_count": d["lockout_count"]},
+                outcome="ACCOUNT_LOCKED",
+            )
+            return False, f"Invalid PIN. 5 failed attempts exceeded. Account locked out for {backoff_sec} seconds.", None, None
+        else:
+            try:
+                with open(EMS_DRIVERS_FILE, "w", encoding="utf-8") as f:
+                    json.dump(drivers, f, indent=2)
+            except Exception:
+                pass
+            sec.log_audit_entry(
+                client_id=v_key,
+                action="driver_login_failed",
+                details={"failed_attempts": attempts, "remaining_attempts": 5 - attempts},
+                outcome="FAILED_CREDENTIALS",
+            )
+            return False, f"Invalid Security PIN. Attempt {attempts} of 5 before lockout.", None, None
+
+    # 4. Successful Login
+    d["failed_attempts"] = 0
+    d["lockout_until"] = 0.0
+    d["last_login"] = datetime.now(timezone.utc).isoformat()
+    try:
+        with open(EMS_DRIVERS_FILE, "w", encoding="utf-8") as f:
+            json.dump(drivers, f, indent=2)
+    except Exception:
+        pass
+
+    # Issue dispatch JWT token bound exclusively to this authenticated session
+    jwt_token = sec.generate_token(client_id=v_key, role="emergency_dispatch")
+    sec.log_audit_entry(
+        client_id=v_key,
+        action="driver_login",
+        details={"driver_name": d.get("name"), "hospital": d.get("hospital")},
+        outcome="SUCCESS",
+    )
+    return True, "Login successful", d, jwt_token
+
+
+def save_registered_driver(
+    name: str,
+    vehicle_number: str,
+    phone: str,
+    vehicle_type: str,
+    hospital: str,
+    pin: str,
+    auto_approve: bool = False,
+) -> dict:
+    """Register and persist a new ambulance driver record (backward compatibility wrapper)."""
+    pin_str = str(pin).strip()
+    if len(pin_str) < 6:
+        pin_str = pin_str.ljust(6, "0")
+    success, msg, rec = register_driver(
+        name=name,
+        vehicle_number=vehicle_number,
+        phone=phone,
+        vehicle_type=vehicle_type,
+        hospital=hospital,
+        pin=pin_str,
+    )
+    if auto_approve and success:
+        approve_driver(vehicle_number)
+    return load_registered_drivers()
+
+
 def render_hospital_maps_page():
-    """Render the full-page Paramedic Hospital Google Maps interface."""
-    # Top Minimal Bar allowing seamless navigation back to the main Traffic Brain
+    """Render the full-page Paramedic Hospital Google Maps interface with driver auth."""
     top_col1, top_col2 = st.columns([9, 3])
     with top_col1:
         st.markdown(
@@ -874,13 +1173,235 @@ def render_hospital_maps_page():
             unsafe_allow_html=True,
         )
 
+    drivers_db = load_registered_drivers()
+
+    # If driver is not authenticated, render login and registration gateway
+    if not st.session_state.get("ems_driver_authenticated", False):
+        st.markdown("---")
+        st.markdown(
+            """
+            <div style="background: linear-gradient(135deg, #091a2e 0%, #062723 100%); border: 2px solid #10b981; border-radius: 12px; padding: 18px 22px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 6px;">
+                    <span style="font-size: 1.6rem;">🚨</span>
+                    <h3 style="margin: 0; color: #34d399; font-weight: 800; font-size: 1.25rem;">
+                        Chennai EMS 108 — Paramedic Driver Dispatch Gateway
+                    </h3>
+                </div>
+                <p style="margin: 0; color: #94a3b8; font-size: 0.88rem;">
+                    Ambulance personnel must register with their name and official vehicle registration number to access live Google Maps in-cabin navigation and green corridor clearance.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        auth_tab_login, auth_tab_reg, auth_tab_approval = st.tabs([
+            "🔑 Paramedic Driver Login",
+            "📝 Register New Ambulance & Driver",
+            "🛡️ CAD Dispatcher Approval Panel",
+        ])
+
+        with auth_tab_login:
+            col_l1, col_l2 = st.columns([6, 6])
+            with col_l1:
+                st.markdown("##### Driver Authentication")
+                known_vehicles = list(drivers_db.keys())
+                login_vehicle = st.selectbox(
+                    "Ambulance Vehicle Registration Number",
+                    options=known_vehicles,
+                    index=0 if known_vehicles else 0,
+                    help="Select your assigned 108 EMS ambulance",
+                    key="login_veh_select",
+                )
+
+                selected_driver = drivers_db.get(login_vehicle, {})
+                driver_display_name = selected_driver.get("name", "Unknown Driver")
+                driver_status = selected_driver.get("status", "APPROVED")
+                status_badge = "🟢 APPROVED" if driver_status == "APPROVED" else "🟡 PENDING APPROVAL"
+                st.caption(
+                    f"Driver: **{driver_display_name}** | Base: {selected_driver.get('hospital', 'Chennai EMS')} | Status: {status_badge}"
+                )
+
+                login_pin = st.text_input(
+                    "Password",
+                    type="password",
+                    value="",
+                    placeholder="Enter PIN (Default: 108080)",
+                    key="login_pin_input",
+                )
+
+                btn_col1, btn_col2 = st.columns([6, 6])
+                with btn_col1:
+                    if st.button("🚀 Login to Navigation Console", width='stretch', type="primary", key="login_submit_btn"):
+                        is_ok, msg, d_rec, token = authenticate_driver(login_vehicle, login_pin)
+                        if is_ok:
+                            st.session_state["ems_driver_authenticated"] = True
+                            st.session_state["current_ems_driver"] = d_rec
+                            st.session_state["ems_jwt_token"] = token
+                            st.success(f"Authentication verified. Welcome Officer {driver_display_name}!")
+                            st.rerun()
+                        else:
+                            st.error(msg)
+
+                with btn_col2:
+                    if st.button("⚡ Quick Login (Rajesh Kumar)", width='stretch', key="quick_demo_login_btn"):
+                        is_ok, msg, d_rec, token = authenticate_driver("TN-09-EMS-108", "108080")
+                        if is_ok:
+                            st.session_state["ems_driver_authenticated"] = True
+                            st.session_state["current_ems_driver"] = d_rec
+                            st.session_state["ems_jwt_token"] = token
+                            st.success("Authenticated as Officer Rajesh Kumar (TN-09-EMS-108)!")
+                            st.rerun()
+                        else:
+                            st.error(msg)
+
+            with col_l2:
+                st.markdown("##### CAD Fleet Security & Governance")
+                st.info(
+                    "🛡️ **EMS Telemetry Protocols**:\n\n"
+                    "- Passwords/PINs are salted & hashed using **bcrypt** (minimum 6 characters).\n"
+                    "- All new vehicle registrations require **CAD Dispatcher approval** before access.\n"
+                    "- Brute-force protection: accounts are locked out after **5 failed attempts** with exponential backoff.\n"
+                    "- Every authentication event, approval, and failed login is logged to the cryptographically hashed audit log.\n"
+                    "- JWT authorization tokens are strictly bound to authenticated driver sessions."
+                )
+
+        with auth_tab_reg:
+            st.markdown("##### Register Ambulance Driver & Emergency Vehicle")
+            st.caption("New ambulance deployments are created with PENDING status until approved by a CAD Dispatcher.")
+            r_col1, r_col2 = st.columns(2)
+            with r_col1:
+                reg_name = st.text_input("Driver Full Name", placeholder="e.g. S. Venkatesh", key="reg_name_input")
+                reg_vehicle = st.text_input(
+                    "Ambulance Vehicle Number", placeholder="e.g. TN-07-EMS-1084", key="reg_veh_input"
+                )
+                reg_phone = st.text_input(
+                    "Mobile / Dispatch Contact", placeholder="e.g. +91 98400 10808", key="reg_phone_input"
+                )
+
+            with r_col2:
+                reg_type = st.selectbox(
+                    "Ambulance Vehicle Class",
+                    options=[
+                        "Advanced Life Support (ALS Trauma Pod)",
+                        "Basic Life Support (BLS Fast Responder)",
+                        "Neonatal / Pediatric Critical Care Unit (NICU)",
+                        "Mobile Stroke Unit (CT Equipped)",
+                    ],
+                    key="reg_type_input",
+                )
+                reg_hospital = st.selectbox(
+                    "Base Trauma Hospital / Center",
+                    options=[
+                        "Apollo Hospitals (Greams Road)",
+                        "Rajiv Gandhi Govt General Hospital",
+                        "TN Multi Super Speciality Hospital (Omandurar)",
+                        "Kilpauk Medical College Hospital",
+                        "MIOT International Hospital",
+                        "Fortis Malar Hospital",
+                        "Kauvery Hospital",
+                    ],
+                    key="reg_hosp_input",
+                )
+                reg_pin = st.text_input(
+                    "Create Security PIN / Passcode (min 6 characters)",
+                    type="password",
+                    placeholder="Enter minimum 6 characters",
+                    key="reg_pin_input",
+                )
+
+            if st.button("📝 Submit Ambulance Registration", width='stretch', type="primary", key="reg_submit_btn"):
+                if not reg_name.strip():
+                    st.error("Driver Full Name is required.")
+                elif not reg_vehicle.strip():
+                    st.error("Ambulance Vehicle Number is required.")
+                elif len(reg_pin.strip()) < 6:
+                    st.error("Security PIN must be at least 6 characters.")
+                else:
+                    success, msg, rec = register_driver(
+                        name=reg_name.strip(),
+                        vehicle_number=reg_vehicle.strip().upper(),
+                        phone=reg_phone.strip() or "N/A",
+                        vehicle_type=reg_type,
+                        hospital=reg_hospital,
+                        pin=reg_pin.strip(),
+                    )
+                    if success:
+                        st.success(f"Ambulance {rec['vehicle_number']} registered! Status: PENDING approval by CAD Dispatcher.")
+                        st.info("Switch to the 'CAD Dispatcher Approval Panel' tab to review and approve this vehicle.")
+                    else:
+                        st.error(msg)
+
+        with auth_tab_approval:
+            st.markdown("##### CAD Dispatcher Fleet Authorization Panel")
+            st.caption("Review pending ambulance vehicle registration requests and authorize CAD dispatch access.")
+            drivers_current = load_registered_drivers()
+            pending_drivers = {k: v for k, v in drivers_current.items() if v.get("status") == "PENDING"}
+
+            if pending_drivers:
+                st.warning(f"⚠️ {len(pending_drivers)} ambulance registration request(s) awaiting approval.")
+                for v_num, p_info in pending_drivers.items():
+                    with st.container():
+                        st.markdown(f"**Vehicle**: `{v_num}` | **Driver**: {p_info.get('name')} | **Hospital**: {p_info.get('hospital')} | **Type**: {p_info.get('vehicle_type')}")
+                        app_col1, app_col2 = st.columns([4, 8])
+                        with app_col1:
+                            if st.button(f"✅ Authorize Dispatch for {v_num}", key=f"appr_{v_num}"):
+                                approve_driver(v_num, approved_by="CAD Dispatch Supervisor")
+                                st.success(f"Ambulance {v_num} approved! Driver can now log in.")
+                                st.rerun()
+                        st.markdown("---")
+            else:
+                st.info("✅ All registered ambulance fleet vehicles are verified and approved.")
+
+        st.stop()
+
+    # Authenticated Driver View
+    current_driver = st.session_state.get("current_ems_driver", {})
+    driver_name = current_driver.get("name", "Rajesh Kumar")
+    vehicle_number = current_driver.get("vehicle_number", "TN-09-EMS-108")
+    hospital_base = current_driver.get("hospital", "Apollo Hospitals (Greams Road)")
+    vehicle_type = current_driver.get("vehicle_type", "Advanced Life Support (ALS Trauma Pod)")
+
+    # Active Officer Duty Status Strip
+    st.markdown(
+        f"""
+        <div style="background: linear-gradient(90deg, #052e16 0%, #064e3b 100%); border: 1px solid #10b981; border-radius: 10px; padding: 10px 18px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.3rem;">🟢</span>
+                <div>
+                    <span style="font-size: 0.95rem; font-weight: 800; color: #6ee7b7; letter-spacing: 0.02em;">
+                        ACTIVE DUTY: {vehicle_number}
+                    </span>
+                    <span style="font-size: 0.82rem; color: #a7f3d0; margin-left: 8px;">
+                        • Officer {driver_name} • Base: {hospital_base} • {vehicle_type}
+                    </span>
+                </div>
+            </div>
+            <div style="font-size: 0.75rem; color: #6ee7b7; font-weight: 700; background: rgba(16, 185, 129, 0.2); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.4);">
+                CAD DISPATCH AUTHORIZED
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    btn_logout_col1, btn_logout_col2 = st.columns([10, 2])
+    with btn_logout_col2:
+        if st.button("🚪 Logout / Switch", width='stretch', key="driver_logout_action"):
+            st.session_state["ems_driver_authenticated"] = False
+            st.session_state["current_ems_driver"] = None
+            st.rerun()
+
     st.info(
         "ℹ️ **Notice**: This Paramedic Hospital Navigation Cockpit is a standalone concept demonstration. "
         "It is decoupled from the live traffic signal simulator, operates independently of signal phase timing, "
         "and requires an active internet connection to stream tile map layers and fetch OSRM routing geometries."
     )
 
-    # Embed the rich, full-height Paramedic Google Maps application
-    html_app = generate_hospital_maps_html()
+    html_app = generate_hospital_maps_html(
+        driver_name=driver_name,
+        vehicle_number=vehicle_number,
+        hospital=hospital_base,
+    )
     components.html(html_app, height=750, scrolling=False)
 

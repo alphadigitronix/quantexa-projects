@@ -76,7 +76,7 @@ class RoadNetwork:
             free_flow_travel_time=self.config.free_flow_travel_time_sec,
         )
 
-    def set_edge_status(self, u: int, v: int, status: str) -> None:
+    def set_edge_status(self, u: int, v: int, status: str, capacity: Optional[int] = None) -> None:
         """Modifies edge operational status ('open', 'closed', 'reduced') and adjusts effective capacity."""
         if not self.graph.has_edge(u, v):
             raise ValueError(f"Road segment ({u}, {v}) does not exist.")
@@ -91,7 +91,10 @@ class RoadNetwork:
         if status == "open":
             self.graph[u][v]["capacity"] = base_cap
         elif status == "reduced":
-            self.graph[u][v]["capacity"] = max(1, base_cap // 2)
+            if capacity is not None:
+                self.graph[u][v]["capacity"] = capacity
+            else:
+                self.graph[u][v]["capacity"] = max(1, base_cap // 5)
         elif status == "closed":
             self.graph[u][v]["capacity"] = 0
 

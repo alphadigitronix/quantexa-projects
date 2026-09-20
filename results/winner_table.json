@@ -1,0 +1,146 @@
+{
+  "balanced": {
+    "scenario_name": "Balanced Flow (Uniform Demand)",
+    "saturation_label": "Oversaturated (Unbounded Queues)",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 103.34,
+      "hybrid_value": 123.17,
+      "diff_to_hybrid": 19.83
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed-Timing Baseline",
+      "value": 214.99
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 136.22
+    }
+  },
+  "moderate_load": {
+    "scenario_name": "Moderate Load (75-80% Saturation)",
+    "saturation_label": "Bounded (75-80% Saturation)",
+    "best_on_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 18.92,
+      "hybrid_value": 25.61,
+      "diff_to_hybrid": 6.69
+    },
+    "best_on_p95_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 41.13
+    },
+    "best_on_throughput": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 101.16
+    }
+  },
+  "directional_moderate": {
+    "scenario_name": "Directional Moderate (Lopsided Bounded)",
+    "saturation_label": "Bounded (75-85% Saturation, Asymmetric)",
+    "best_on_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 29.58,
+      "hybrid_value": 32.77,
+      "diff_to_hybrid": 3.19
+    },
+    "best_on_p95_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 56.55
+    },
+    "best_on_throughput": {
+      "controller": "Rule-Based (tuned)",
+      "value": 99.04
+    }
+  },
+  "incident_moderate": {
+    "scenario_name": "Incident Moderate (Moderate + Lane Closure)",
+    "saturation_label": "Bounded + Bottleneck Incident",
+    "best_on_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 22.48,
+      "hybrid_value": 29.22,
+      "diff_to_hybrid": 6.74
+    },
+    "best_on_p95_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 56.62
+    },
+    "best_on_throughput": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 100.3
+    }
+  },
+  "shifting_demand": {
+    "scenario_name": "Shifting Demand (Dynamic Corridor Swap)",
+    "saturation_label": "Bounded (Dynamic Split Swap)",
+    "best_on_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 29.98,
+      "hybrid_value": 31.92,
+      "diff_to_hybrid": 1.94
+    },
+    "best_on_p95_wait": {
+      "controller": "Rule-Based (tuned)",
+      "value": 67.71
+    },
+    "best_on_throughput": {
+      "controller": "Rule-Based (tuned)",
+      "value": 109.94
+    }
+  },
+  "surge_moderate": {
+    "scenario_name": "Surge Moderate (Moderate + 3x Arterial Burst)",
+    "saturation_label": "Bounded + Transient Burst",
+    "best_on_wait": {
+      "controller": "Max-Pressure (tuned)",
+      "value": 48.75,
+      "hybrid_value": 56.42,
+      "diff_to_hybrid": 7.67
+    },
+    "best_on_p95_wait": {
+      "controller": "Hybrid Controller (Brute-Force)",
+      "value": 113.68
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 110.13
+    }
+  },
+  "rush_hour": {
+    "scenario_name": "Rush-Hour (3x Arterial Demand)",
+    "saturation_label": "Oversaturated (Arterial Dominance)",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 88.12,
+      "hybrid_value": 96.44,
+      "diff_to_hybrid": 8.32
+    },
+    "best_on_p95_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 160.51
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 116.95
+    }
+  },
+  "surge_accident": {
+    "scenario_name": "Surge + Incident (Lane Closure)",
+    "saturation_label": "Oversaturated + Bottleneck Incident",
+    "best_on_wait": {
+      "controller": "Fixed (tuned)",
+      "value": 107.02,
+      "hybrid_value": 122.1,
+      "diff_to_hybrid": 15.08
+    },
+    "best_on_p95_wait": {
+      "controller": "Hybrid Controller (Brute-Force)",
+      "value": 241.38
+    },
+    "best_on_throughput": {
+      "controller": "Fixed (tuned)",
+      "value": 117.88
+    }
+  }
+}

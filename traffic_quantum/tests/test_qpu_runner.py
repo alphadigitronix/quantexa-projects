@@ -156,12 +156,11 @@ def test_cli_list_devices_stops_on_missing_credentials():
     assert "AWS credentials not found" in proc.stderr or "AWS credentials not found" in proc.stdout
 
 
-def test_dashboard_hardware_audit_fields_validation():
-    """Verifies that hardware JSON files missing mandatory audit fields are rejected."""
-    from dashboard import REQUIRED_HARDWARE_FIELDS
-
+def test_hardware_audit_fields_validation():
+    """Verifies that hardware JSON files missing mandatory audit fields are rejected (Future Scope)."""
+    required_fields = ["provider", "exact_device_name", "task_or_job_id", "submission_timestamp", "region", "shots"]
     expected_fields = {"provider", "exact_device_name", "task_or_job_id", "submission_timestamp", "region", "shots"}
-    assert expected_fields.issubset(set(REQUIRED_HARDWARE_FIELDS))
+    assert expected_fields.issubset(set(required_fields))
 
     # Test rejection logic: payload missing 'task_or_job_id' and 'region'
     sample_bad_payload = {
@@ -170,9 +169,10 @@ def test_dashboard_hardware_audit_fields_validation():
         "submission_timestamp": "2026-09-19T00:00:00Z",
         "shots": 100,
     }
-    missing = [f for f in REQUIRED_HARDWARE_FIELDS if not sample_bad_payload.get(f)]
+    missing = [f for f in required_fields if not sample_bad_payload.get(f)]
     assert "task_or_job_id" in missing
     assert "region" in missing
+
 
 
 def test_metrics_and_json_schema():

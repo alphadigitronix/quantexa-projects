@@ -18,7 +18,7 @@
 9. [Vehicle Detection Pipeline](#vehicle-detection-pipeline)
 10. [Configuration Parameters](#configuration-parameters)
 11. [Installation & Running](#installation--running)
-12. [Running on Real Quantum Hardware](#running-on-real-quantum-hardware)
+12. [Future Scope](#future-scope)
 13. [Known Limitations](#known-limitations)
 
 
@@ -470,12 +470,11 @@ The dashboard navigation uses full-width interactive button pills with clean gap
   - Priority Level: Priority 2 (Code Red / Cardiac) vs. Priority 1 (Code Yellow / Urgent).
   - Dispatch Controls: Single unit dispatch, Random auto-dispatch, and Multi-ambulance conflict resolution test dispatch.
   - Security Attack Simulator: Test harness for forged token attacks, expired token rejections, rate-limit burst blocks, and SHA-256 cryptographic audit chain verification.
-  - Live Telemetry Canvas & Preemption Impact Monitor: Reports delay avoided (~9.7s to 13.4s) and downstream queue flushing.
+  - Live Telemetry Canvas & Preemption Impact Monitor: Reports transit time saved and downstream queue flushing.
 
-#### Tab 3: Quantum QAOA Core (Electric Violet)
-- **QUBO Matrix Heatmap**: Visualizes the $6 \times 6$ quadratic coupling and penalty matrix $Q$, illustrating coordination bonuses and spillback penalties.
-- **QAOA State Probability Distribution**: Bar chart displaying the top 16 basis state probabilities measured from the PennyLane parameterized quantum circuit.
-- **Circuit Telemetry**: Live readout of the QAOA approximation ratio, exact optimum hit status, and optimal phase bitstring.
+#### Tab 3: Quantum Optimization Panel (Electric Violet)
+- **QUBO Matrix Heatmap**: Visualizes the $6 \times 6$ quadratic coupling and penalty matrix $Q$, illustrating active approach penalties, coordination bonuses, and spillback penalties.
+- **QAOA State Probability Distribution**: Bar chart displaying top basis state probabilities measured from the PennyLane parameterized quantum circuit.
 
 #### Tab 4: Performance Benchmarks (Warm Amber)
 - **On-Demand Benchmark Runner**: Executes synchronized multi-seed comparisons across all 4 controllers (Fixed-Timing Baseline, Greedy Rule-Based, Hybrid Brute-Force, and Hybrid QAOA).
@@ -541,7 +540,7 @@ Accessible via the **"🏥 View Real Dashboard (Hospital Google Maps) ↗"** but
      a. controller.compute_phases(sim)
         |- Build QUBO matrix Q from live queue state
         |- Run QAOA or brute-force -> bitstring x*
-        +- Compute adaptive green durations
+        +- Compute signal phase assignments
      b. sim.set_signal_phases(phases)
      c. sim.step()
         |- _generate_boundary_arrivals()  [if autoFlow]
@@ -1103,78 +1102,16 @@ pytest traffic_quantum/tests -v
 
 ---
 
-## Running on Real Quantum Hardware
+## Future Scope
 
-The project provides an **optional standalone runner** (`scripts/run_on_qpu.py`) to execute the 6-qubit traffic signal QAOA circuit on physical quantum processing units (QPUs) via **Amazon Braket** or **IBM Quantum**.
+1. **Quantum Hardware Execution (Experimental)**:
+   - An optional standalone runner (`scripts/run_on_qpu.py`) exists in the repository for compiling and testing the 6-qubit traffic QAOA circuit against physical quantum processing units (QPUs) via Amazon Braket or IBM Quantum.
+   - **No physical quantum hardware was executed for any reported result in this repository.** All empirical figures, tables, and distributions reported here are derived strictly from local classical quantum simulators (PennyLane `default.qubit` and local Braket simulators).
+   - The script is marked as experimental future scope. If physical hardware is accessed in future work, provider task fees, per-shot costs, and device availability must be checked directly in the cloud provider console.
 
-> [!WARNING]
-> **Cost & Real Hardware Warning**:
-> Executing jobs on physical quantum hardware is NOT free. Provider charges typically include per-task submission fees (e.g. ~$0.30 on Braket) and per-shot fees (e.g. ~$0.01 to $0.03 per shot on trapped-ion QPUs), or consume IBM Quantum monthly runtime quotas.
-> Always run `--dry-run` first. The runner will refuse to submit jobs unless `--confirm` is explicitly passed.
-
-### 1. Prerequisites
-
-1. **Credentials**: Never commit credentials to git. Store them in `.env` (which is in `.gitignore`) or your system cloud credential store:
-   ```bash
-   # AWS Braket (.env or ~/.aws/credentials)
-   AWS_ACCESS_KEY_ID=your_access_key
-   AWS_SECRET_ACCESS_KEY=your_secret_key
-   AWS_DEFAULT_REGION=us-east-1
-   AWS_BRAKET_S3_BUCKET=amazon-braket-your-bucket-name
-
-   # IBM Quantum (.env or qiskit-ibm-runtime save_account)
-   IBM_QUANTUM_TOKEN=your_ibm_api_token
-   IBM_QUANTUM_INSTANCE=ibm-q/open/main
-   ```
-
-2. **Packages**: The dependencies (`amazon-braket-sdk`, `amazon-braket-pennylane-plugin`, `qiskit`, `qiskit-ibm-runtime`, `boto3`) are installed in the Python environment.
-
-### 2. Provider Device Verification & Pricing Notice
-
-Device ARNs, operational availability windows, and per-shot pricing are subject to vendor changes and **must be verified in the provider console** before submitting workloads:
-- **AWS Braket Console**: Navigate to *Amazon Braket > Devices* to inspect active QPU online status, queue depths, and operational hours.
-  - IonQ Aria-1: `arn:aws:braket:us-east-1::device/qpu/ionq/Aria-1` (~$0.30/task + $0.03/shot)
-  - Rigetti Ankaa-9Q: `arn:aws:braket:us-west-1::device/qpu/rigetti/Ankaa-9Q` (~$0.30/task + $0.00035/shot)
-  - IQM Garnet: `arn:aws:braket:eu-north-1::device/qpu/iqm/Garnet` (~$0.30/task + $0.00145/shot)
-- **IBM Quantum Platform**: Navigate to *Platform > Instances / Compute Resources* to view operational backends and queue times (e.g., `ibm_sherbrooke`, `ibm_brisbane`, or least-busy selection).
-
-The script automatically queries the device status and **fails immediately if the target device is offline or unavailable**, saving nothing labeled "hardware".
-
-### 3. Execution Commands
-
-#### Safe Dry-Run (Compiles circuit, prints depth & 2-qubit gates, charges $0.00)
-```bash
-# Amazon Braket compilation dry-run
-python scripts/run_on_qpu.py --provider braket --dry-run
-
-# IBM Quantum compilation dry-run
-python scripts/run_on_qpu.py --provider ibm --dry-run
-```
-
-#### Confirmed Hardware Execution (Submits 1 task to physical QPU)
-```bash
-# Execute on AWS Braket IonQ Aria-1 (1000 shots)
-python scripts/run_on_qpu.py --provider braket --shots 1000 --confirm
-
-# Execute on IBM Quantum least-busy operational backend (1000 shots)
-python scripts/run_on_qpu.py --provider ibm --shots 1000 --confirm
-```
-
-### 4. Safety Guardrails Enforced by Code
-- **Cost & Shot Caps**: Hard safety limit of `max_shots` (default 1,000) and `max_cost_usd` (default $35.00) in `traffic_quantum/config.py:QPUConfig`.
-- **Mandatory `--confirm`**: If run without `--confirm`, the runner compiles the circuit, displays estimated cost, and exits with code 1.
-- **No Silent Fallback**: If the QPU is offline or a task fails, the runner aborts with a clear error and writes no file labeled "hardware".
-- **Strict Separation**: Zero QPU calls exist in the live simulation loop, benchmark, or dashboard reruns.
-
-### 5. Verifying Your Run in Provider Consoles
-Each hardware execution generates a JSON audit file in `results/qpu_run_<provider>_<timestamp>.json` and a comparison plot in `results/qpu_run_<provider>_<timestamp>.png`.
-- **AWS Braket Console**: Copy the printed `Quantum Task ID` (e.g., `arn:aws:braket:...:quantum-task/...`), open the AWS Management Console -> Amazon Braket -> Quantum Tasks, and confirm the task state (`COMPLETED`), runtime, and S3 output artifacts.
-- **IBM Quantum Platform**: Copy the `Job ID`, open the IBM Quantum Platform -> Jobs dashboard, and view the transpiled ISA circuit graph, QPU calibration snapshot, and execution timestamps.
-
-### 6. Honest Performance & Noise Notice
-- **No Quantum Advantage**: For a 6-intersection (6-qubit) network, classical brute-force solves the QUBO in <1 millisecond. No claim of quantum supremacy or speedup is made.
-- **Noise Degradation**: Physical QPUs are subject to state preparation and measurement (SPAM) errors, gate infidelity (across the 28 two-qubit CNOT/CZ gates), and decoherence. Hardware sample distributions will show dispersion and lower approximation ratios compared to the noiseless simulator, quantified via Total Variation Distance (TVD).
-- **Labeling**: Every output artifact is explicitly labeled: `"sampled on <device>, angles trained on simulator"`.
+2. **Physical Traffic Signal Actuator Integration**:
+   - The vendor-agnostic `SignalControllerInterface` (`traffic_quantum/signal_interface.py`) provides an architectural abstraction for connecting to real-world NEMA TS2, Type 170, and ATC cabinet controllers using standard NTCIP 1202 communications protocols.
+   - **No physical signal cabinet hardware is currently connected or integrated.** All signal timing, conflict monitoring, and preemption transitions are evaluated within the software simulation engine.
 
 ---
 

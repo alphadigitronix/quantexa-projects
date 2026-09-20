@@ -1,0 +1,3957 @@
+{
+  "metadata": {
+    "lost_time_sec": 2,
+    "headline_min_green": true,
+    "training_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "sim_duration_sec": 600
+  },
+  "fixed": {
+    "balanced": {
+      "cycle_len_sec": 60,
+      "ns_green_sec": 45,
+      "mean_wait_training": 103.68
+    },
+    "moderate_load": {
+      "cycle_len_sec": 40,
+      "ns_green_sec": 20,
+      "mean_wait_training": 31.98
+    },
+    "directional_moderate": {
+      "cycle_len_sec": 80,
+      "ns_green_sec": 25,
+      "mean_wait_training": 34.88
+    },
+    "incident_moderate": {
+      "cycle_len_sec": 50,
+      "ns_green_sec": 25,
+      "mean_wait_training": 34.99
+    },
+    "shifting_demand": {
+      "cycle_len_sec": 80,
+      "ns_green_sec": 35,
+      "mean_wait_training": 56.13
+    },
+    "surge_moderate": {
+      "cycle_len_sec": 80,
+      "ns_green_sec": 35,
+      "mean_wait_training": 54.31
+    },
+    "rush_hour": {
+      "cycle_len_sec": 90,
+      "ns_green_sec": 25,
+      "mean_wait_training": 88.37
+    },
+    "surge_accident": {
+      "cycle_len_sec": 60,
+      "ns_green_sec": 25,
+      "mean_wait_training": 107.38
+    }
+  },
+  "fixed_tuned": {
+    "balanced": {
+      "cycle_len_sec": 60,
+      "ns_green_sec": 45,
+      "mean_wait_training": 103.68
+    },
+    "moderate_load": {
+      "cycle_len_sec": 40,
+      "ns_green_sec": 20,
+      "mean_wait_training": 31.98
+    },
+    "directional_moderate": {
+      "cycle_len_sec": 80,
+      "ns_green_sec": 25,
+      "mean_wait_training": 34.88
+    },
+    "incident_moderate": {
+      "cycle_len_sec": 50,
+      "ns_green_sec": 25,
+      "mean_wait_training": 34.99
+    },
+    "shifting_demand": {
+      "cycle_len_sec": 80,
+      "ns_green_sec": 35,
+      "mean_wait_training": 56.13
+    },
+    "surge_moderate": {
+      "cycle_len_sec": 80,
+      "ns_green_sec": 35,
+      "mean_wait_training": 54.31
+    },
+    "rush_hour": {
+      "cycle_len_sec": 90,
+      "ns_green_sec": 25,
+      "mean_wait_training": 88.37
+    },
+    "surge_accident": {
+      "cycle_len_sec": 60,
+      "ns_green_sec": 25,
+      "mean_wait_training": 107.38
+    }
+  },
+  "rule_based": {
+    "balanced": {
+      "eval_interval_sec": 15,
+      "min_green_sec": 20,
+      "hysteresis": 0,
+      "mean_wait_training": 124.71
+    },
+    "moderate_load": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 5,
+      "mean_wait_training": 22.99
+    },
+    "directional_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 29.91
+    },
+    "incident_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 28.04
+    },
+    "shifting_demand": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 30.86
+    },
+    "surge_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 3,
+      "mean_wait_training": 55.99
+    },
+    "rush_hour": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 5,
+      "mean_wait_training": 104.21
+    },
+    "surge_accident": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 2,
+      "mean_wait_training": 138.44
+    }
+  },
+  "rule_based_tuned": {
+    "balanced": {
+      "eval_interval_sec": 15,
+      "min_green_sec": 20,
+      "hysteresis": 0,
+      "mean_wait_training": 124.71
+    },
+    "moderate_load": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 5,
+      "mean_wait_training": 22.99
+    },
+    "directional_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 29.91
+    },
+    "incident_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 28.04
+    },
+    "shifting_demand": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 30.86
+    },
+    "surge_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 3,
+      "mean_wait_training": 55.99
+    },
+    "rush_hour": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 5,
+      "mean_wait_training": 104.21
+    },
+    "surge_accident": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 2,
+      "mean_wait_training": 138.44
+    }
+  },
+  "max_pressure": {
+    "balanced": {
+      "eval_interval_sec": 15,
+      "min_green_sec": 20,
+      "hysteresis": 2,
+      "mean_wait_training": 120.2
+    },
+    "moderate_load": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 19.45
+    },
+    "directional_moderate": {
+      "eval_interval_sec": 5,
+      "min_green_sec": 10,
+      "hysteresis": 0,
+      "mean_wait_training": 37.09
+    },
+    "incident_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 2,
+      "mean_wait_training": 24.32
+    },
+    "shifting_demand": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 36.46
+    },
+    "surge_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 5,
+      "mean_wait_training": 52.69
+    },
+    "rush_hour": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 5,
+      "mean_wait_training": 100.96
+    },
+    "surge_accident": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 2,
+      "mean_wait_training": 129.47
+    }
+  },
+  "max_pressure_tuned": {
+    "balanced": {
+      "eval_interval_sec": 15,
+      "min_green_sec": 20,
+      "hysteresis": 2,
+      "mean_wait_training": 120.2
+    },
+    "moderate_load": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 19.45
+    },
+    "directional_moderate": {
+      "eval_interval_sec": 5,
+      "min_green_sec": 10,
+      "hysteresis": 0,
+      "mean_wait_training": 37.09
+    },
+    "incident_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 2,
+      "mean_wait_training": 24.32
+    },
+    "shifting_demand": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 36.46
+    },
+    "surge_moderate": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 5,
+      "mean_wait_training": 52.69
+    },
+    "rush_hour": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 5,
+      "mean_wait_training": 100.96
+    },
+    "surge_accident": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 15,
+      "hysteresis": 2,
+      "mean_wait_training": 129.47
+    }
+  },
+  "hybrid": {
+    "balanced": {
+      "reopt_interval_sec": 15,
+      "w_switch": 5.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 124.14
+    },
+    "moderate_load": {
+      "reopt_interval_sec": 10,
+      "w_switch": 2.5,
+      "w_throughput_coupling": 0.0,
+      "mean_wait_training": 27.26
+    },
+    "directional_moderate": {
+      "reopt_interval_sec": 10,
+      "w_switch": 1.0,
+      "w_throughput_coupling": 0.1,
+      "mean_wait_training": 32.23
+    },
+    "incident_moderate": {
+      "reopt_interval_sec": 10,
+      "w_switch": 0.0,
+      "w_throughput_coupling": 0.05,
+      "mean_wait_training": 30.24
+    },
+    "shifting_demand": {
+      "reopt_interval_sec": 10,
+      "w_switch": 1.0,
+      "w_throughput_coupling": 0.1,
+      "mean_wait_training": 32.68
+    },
+    "surge_moderate": {
+      "reopt_interval_sec": 15,
+      "w_switch": 0.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 58.26
+    },
+    "rush_hour": {
+      "reopt_interval_sec": 15,
+      "w_switch": 1.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 98.04
+    },
+    "surge_accident": {
+      "reopt_interval_sec": 15,
+      "w_switch": 0.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 122.1
+    }
+  },
+  "hybrid_tuned": {
+    "balanced": {
+      "reopt_interval_sec": 15,
+      "w_switch": 5.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 124.14
+    },
+    "moderate_load": {
+      "reopt_interval_sec": 10,
+      "w_switch": 2.5,
+      "w_throughput_coupling": 0.0,
+      "mean_wait_training": 27.26
+    },
+    "directional_moderate": {
+      "reopt_interval_sec": 10,
+      "w_switch": 1.0,
+      "w_throughput_coupling": 0.1,
+      "mean_wait_training": 32.23
+    },
+    "incident_moderate": {
+      "reopt_interval_sec": 10,
+      "w_switch": 0.0,
+      "w_throughput_coupling": 0.05,
+      "mean_wait_training": 30.24
+    },
+    "shifting_demand": {
+      "reopt_interval_sec": 10,
+      "w_switch": 1.0,
+      "w_throughput_coupling": 0.1,
+      "mean_wait_training": 32.68
+    },
+    "surge_moderate": {
+      "reopt_interval_sec": 15,
+      "w_switch": 0.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 58.26
+    },
+    "rush_hour": {
+      "reopt_interval_sec": 15,
+      "w_switch": 1.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 98.04
+    },
+    "surge_accident": {
+      "reopt_interval_sec": 15,
+      "w_switch": 0.0,
+      "w_throughput_coupling": 0.5,
+      "mean_wait_training": 122.1
+    }
+  },
+  "boundary_audits": {
+    "balanced": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "BOUNDARY",
+        "hysteresis": "BOUNDARY"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "BOUNDARY",
+        "hysteresis": "INTERIOR"
+      },
+      "hybrid": {
+        "reopt_interval": "BOUNDARY",
+        "w_switch": "BOUNDARY",
+        "w_coupling": "BOUNDARY"
+      }
+    },
+    "moderate_load": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "BOUNDARY"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "hybrid": {
+        "reopt_interval": "INTERIOR",
+        "w_switch": "INTERIOR",
+        "w_coupling": "BOUNDARY"
+      }
+    },
+    "directional_moderate": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "max_pressure": {
+        "eval_interval": "INTERIOR",
+        "min_green": "INTERIOR",
+        "hysteresis": "BOUNDARY"
+      },
+      "hybrid": {
+        "reopt_interval": "INTERIOR",
+        "w_switch": "INTERIOR",
+        "w_coupling": "INTERIOR"
+      }
+    },
+    "incident_moderate": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "hybrid": {
+        "reopt_interval": "INTERIOR",
+        "w_switch": "BOUNDARY",
+        "w_coupling": "INTERIOR"
+      }
+    },
+    "shifting_demand": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "hybrid": {
+        "reopt_interval": "INTERIOR",
+        "w_switch": "INTERIOR",
+        "w_coupling": "INTERIOR"
+      }
+    },
+    "surge_moderate": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "BOUNDARY"
+      },
+      "hybrid": {
+        "reopt_interval": "BOUNDARY",
+        "w_switch": "BOUNDARY",
+        "w_coupling": "BOUNDARY"
+      }
+    },
+    "rush_hour": {
+      "fixed": {
+        "cycle_len_sec": "ON UPPER BOUNDARY "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "BOUNDARY"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "BOUNDARY"
+      },
+      "hybrid": {
+        "reopt_interval": "BOUNDARY",
+        "w_switch": "INTERIOR",
+        "w_coupling": "BOUNDARY"
+      }
+    },
+    "surge_accident": {
+      "fixed": {
+        "cycle_len_sec": "INTERIOR "
+      },
+      "rule_based": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "max_pressure": {
+        "eval_interval": "BOUNDARY",
+        "min_green": "INTERIOR",
+        "hysteresis": "INTERIOR"
+      },
+      "hybrid": {
+        "reopt_interval": "BOUNDARY",
+        "w_switch": "BOUNDARY",
+        "w_coupling": "BOUNDARY"
+      }
+    }
+  },
+  "all_sweeps": {
+    "lost_time_2s_headline": {
+      "metadata": {
+        "lost_time_sec": 2,
+        "headline_min_green": true,
+        "training_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sim_duration_sec": 600
+      },
+      "fixed": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 103.68
+        },
+        "moderate_load": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 31.98
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.88
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 50,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.99
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 56.13
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 54.31
+        },
+        "rush_hour": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 25,
+          "mean_wait_training": 88.37
+        },
+        "surge_accident": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 107.38
+        }
+      },
+      "fixed_tuned": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 103.68
+        },
+        "moderate_load": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 31.98
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.88
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 50,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.99
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 56.13
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 54.31
+        },
+        "rush_hour": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 25,
+          "mean_wait_training": 88.37
+        },
+        "surge_accident": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 107.38
+        }
+      },
+      "rule_based": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 124.71
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 5,
+          "mean_wait_training": 22.99
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 29.91
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 28.04
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 30.86
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 55.99
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 104.21
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 138.44
+        }
+      },
+      "rule_based_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 124.71
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 5,
+          "mean_wait_training": 22.99
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 29.91
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 28.04
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 30.86
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 55.99
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 104.21
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 138.44
+        }
+      },
+      "max_pressure": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 120.2
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 19.45
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 37.09
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 24.32
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 36.46
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 52.69
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 100.96
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 129.47
+        }
+      },
+      "max_pressure_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 120.2
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 19.45
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 37.09
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 24.32
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 36.46
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 52.69
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 100.96
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 129.47
+        }
+      },
+      "hybrid": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 124.14
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 27.26
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 32.23
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.05,
+          "mean_wait_training": 30.24
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 32.68
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 58.26
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 98.04
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 122.1
+        }
+      },
+      "hybrid_tuned": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 124.14
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 27.26
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 32.23
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.05,
+          "mean_wait_training": 30.24
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 32.68
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 58.26
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 98.04
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 122.1
+        }
+      },
+      "boundary_audits": {
+        "balanced": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "moderate_load": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "directional_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "incident_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "shifting_demand": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "surge_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "rush_hour": {
+          "fixed": {
+            "cycle_len_sec": "ON UPPER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_accident": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        }
+      }
+    },
+    "lost_time_2s_unconstrained": {
+      "metadata": {
+        "lost_time_sec": 2,
+        "headline_min_green": false,
+        "training_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sim_duration_sec": 600
+      },
+      "fixed": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 103.68
+        },
+        "moderate_load": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 31.98
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.88
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 50,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.99
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 56.13
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 54.31
+        },
+        "rush_hour": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 25,
+          "mean_wait_training": 88.37
+        },
+        "surge_accident": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 107.38
+        }
+      },
+      "fixed_tuned": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 103.68
+        },
+        "moderate_load": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 31.98
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.88
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 50,
+          "ns_green_sec": 25,
+          "mean_wait_training": 34.99
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 56.13
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 54.31
+        },
+        "rush_hour": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 25,
+          "mean_wait_training": 88.37
+        },
+        "surge_accident": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 107.38
+        }
+      },
+      "rule_based": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 124.71
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 5,
+          "mean_wait_training": 22.99
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 29.91
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 28.04
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 30.86
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 55.99
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 104.21
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 138.44
+        }
+      },
+      "rule_based_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 124.71
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 5,
+          "mean_wait_training": 22.99
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 29.91
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 28.04
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 30.86
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 55.99
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 104.21
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 138.44
+        }
+      },
+      "max_pressure": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 120.2
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 19.45
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 35.54
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 24.32
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 35.84
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 52.69
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 100.96
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 129.47
+        }
+      },
+      "max_pressure_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 120.2
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 19.45
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 35.54
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 24.32
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 35.84
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 52.69
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 5,
+          "mean_wait_training": 100.96
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 129.47
+        }
+      },
+      "hybrid": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 124.14
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 2,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 24.99
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 32.23
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.05,
+          "mean_wait_training": 30.24
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 2,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 31.78
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 58.26
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 98.04
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 122.1
+        }
+      },
+      "hybrid_tuned": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 124.14
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 2,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 24.99
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 32.23
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.05,
+          "mean_wait_training": 30.24
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 2,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 31.78
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 58.26
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 98.04
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 122.1
+        }
+      },
+      "boundary_audits": {
+        "balanced": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "moderate_load": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "directional_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "incident_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "shifting_demand": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "rush_hour": {
+          "fixed": {
+            "cycle_len_sec": "ON UPPER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_accident": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        }
+      }
+    },
+    "lost_time_3s_headline": {
+      "metadata": {
+        "lost_time_sec": 3,
+        "headline_min_green": true,
+        "training_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sim_duration_sec": 600
+      },
+      "fixed": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 107.98
+        },
+        "moderate_load": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 34.95
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 37.44
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 38.47
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 59.32
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 57.65
+        },
+        "rush_hour": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 93.95
+        },
+        "surge_accident": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 35,
+          "mean_wait_training": 112.5
+        }
+      },
+      "fixed_tuned": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 107.98
+        },
+        "moderate_load": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 34.95
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 37.44
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 38.47
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 59.32
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 57.65
+        },
+        "rush_hour": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 93.95
+        },
+        "surge_accident": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 35,
+          "mean_wait_training": 112.5
+        }
+      },
+      "rule_based": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 136.99
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 30.44
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 39.83
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 0,
+          "mean_wait_training": 37.83
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 5,
+          "mean_wait_training": 39.94
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 65.16
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.04
+        },
+        "surge_accident": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 147.1
+        }
+      },
+      "rule_based_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 136.99
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 30.44
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 39.83
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 0,
+          "mean_wait_training": 37.83
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 5,
+          "mean_wait_training": 39.94
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 65.16
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.04
+        },
+        "surge_accident": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 147.1
+        }
+      },
+      "max_pressure": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 130.27
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 28.96
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 46.65
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 35.97
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 46.42
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 63.39
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.35
+        },
+        "surge_accident": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 141.89
+        }
+      },
+      "max_pressure_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 130.27
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 28.96
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 46.65
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 35.97
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 46.42
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 63.39
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.35
+        },
+        "surge_accident": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 141.89
+        }
+      },
+      "hybrid": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 133.4
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 38.67
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 42.9
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 47.29
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 41.7
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 68.3
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 104.41
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 129.26
+        }
+      },
+      "hybrid_tuned": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 133.4
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 38.67
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 42.9
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 47.29
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 15,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 41.7
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 68.3
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 104.41
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 15,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 129.26
+        }
+      },
+      "boundary_audits": {
+        "balanced": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "moderate_load": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "directional_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "incident_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "shifting_demand": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "rush_hour": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_accident": {
+          "fixed": {
+            "cycle_len_sec": "ON UPPER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        }
+      }
+    },
+    "lost_time_3s_unconstrained": {
+      "metadata": {
+        "lost_time_sec": 3,
+        "headline_min_green": false,
+        "training_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sim_duration_sec": 600
+      },
+      "fixed": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 107.98
+        },
+        "moderate_load": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 34.95
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 37.44
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 38.47
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 59.32
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 57.65
+        },
+        "rush_hour": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 93.95
+        },
+        "surge_accident": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 35,
+          "mean_wait_training": 112.5
+        }
+      },
+      "fixed_tuned": {
+        "balanced": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 45,
+          "mean_wait_training": 107.98
+        },
+        "moderate_load": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 34.95
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 37.44
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 70,
+          "ns_green_sec": 35,
+          "mean_wait_training": 38.47
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 59.32
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 35,
+          "mean_wait_training": 57.65
+        },
+        "rush_hour": {
+          "cycle_len_sec": 80,
+          "ns_green_sec": 25,
+          "mean_wait_training": 93.95
+        },
+        "surge_accident": {
+          "cycle_len_sec": 90,
+          "ns_green_sec": 35,
+          "mean_wait_training": 112.5
+        }
+      },
+      "rule_based": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 136.99
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 30.44
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 39.37
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 0,
+          "mean_wait_training": 37.83
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 39.89
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 65.16
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.04
+        },
+        "surge_accident": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 147.1
+        }
+      },
+      "rule_based_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 0,
+          "mean_wait_training": 136.99
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 3,
+          "mean_wait_training": 30.44
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 39.37
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 0,
+          "mean_wait_training": 37.83
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 39.89
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 65.16
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.04
+        },
+        "surge_accident": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 147.1
+        }
+      },
+      "max_pressure": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 130.27
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 28.79
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 46.65
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 35.97
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 45.98
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 63.39
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.35
+        },
+        "surge_accident": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 141.89
+        }
+      },
+      "max_pressure_tuned": {
+        "balanced": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 20,
+          "hysteresis": 2,
+          "mean_wait_training": 130.27
+        },
+        "moderate_load": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 3,
+          "mean_wait_training": 28.79
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 46.65
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 35.97
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 45.98
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 15,
+          "hysteresis": 2,
+          "mean_wait_training": 63.39
+        },
+        "rush_hour": {
+          "eval_interval_sec": 5,
+          "min_green_sec": 20,
+          "hysteresis": 5,
+          "mean_wait_training": 111.35
+        },
+        "surge_accident": {
+          "eval_interval_sec": 15,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 141.89
+        }
+      },
+      "hybrid": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 133.4
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 32.92
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 40.24
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 41.79
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 39.69
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 68.3
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 104.41
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 128.62
+        }
+      },
+      "hybrid_tuned": {
+        "balanced": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 133.4
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 32.92
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 40.24
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 41.79
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 39.69
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 15,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 68.3
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 15,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 104.41
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 5,
+          "w_switch": 5.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 128.62
+        }
+      },
+      "boundary_audits": {
+        "balanced": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "moderate_load": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "directional_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "incident_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "shifting_demand": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "rush_hour": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_accident": {
+          "fixed": {
+            "cycle_len_sec": "ON UPPER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "INTERIOR",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        }
+      }
+    },
+    "lost_time_0s_headline": {
+      "metadata": {
+        "lost_time_sec": 0,
+        "headline_min_green": true,
+        "training_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sim_duration_sec": 600
+      },
+      "fixed": {
+        "balanced": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 20,
+          "mean_wait_training": 88.12
+        },
+        "moderate_load": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 15,
+          "mean_wait_training": 24.43
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 25.14
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 26.08
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 47.65
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 15,
+          "mean_wait_training": 45.71
+        },
+        "rush_hour": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 10,
+          "mean_wait_training": 71.79
+        },
+        "surge_accident": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 90.16
+        }
+      },
+      "fixed_tuned": {
+        "balanced": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 20,
+          "mean_wait_training": 88.12
+        },
+        "moderate_load": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 15,
+          "mean_wait_training": 24.43
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 25.14
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 26.08
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 47.65
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 15,
+          "mean_wait_training": 45.71
+        },
+        "rush_hour": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 10,
+          "mean_wait_training": 71.79
+        },
+        "surge_accident": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 90.16
+        }
+      },
+      "rule_based": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 104.95
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 12.6
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 18.82
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 14.27
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 17.8
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 35.95
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 80.07
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 111.43
+        }
+      },
+      "rule_based_tuned": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 104.95
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 12.6
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 18.82
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 14.27
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 17.8
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 35.95
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 80.07
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 0,
+          "mean_wait_training": 111.43
+        }
+      },
+      "max_pressure": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 100.35
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 12.31
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 25.23
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 14.02
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 22.32
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 34.16
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 78.53
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 104.05
+        }
+      },
+      "max_pressure_tuned": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 100.35
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 12.31
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 25.23
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 14.02
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 22.32
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 34.16
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 3,
+          "mean_wait_training": 78.53
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 10,
+          "hysteresis": 2,
+          "mean_wait_training": 104.05
+        }
+      },
+      "hybrid": {
+        "balanced": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 98.72
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 18.28
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 22.58
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 18.84
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 21.21
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 37.91
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 77.31
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 101.53
+        }
+      },
+      "hybrid_tuned": {
+        "balanced": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 98.72
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 18.28
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 22.58
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 18.84
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 10,
+          "w_switch": 2.5,
+          "w_throughput_coupling": 0.1,
+          "mean_wait_training": 21.21
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 10,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 37.91
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 77.31
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 10,
+          "w_switch": 1.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 101.53
+        }
+      },
+      "boundary_audits": {
+        "balanced": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "moderate_load": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "directional_moderate": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "incident_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "shifting_demand": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "surge_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "rush_hour": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_accident": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "INTERIOR",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "INTERIOR",
+            "w_switch": "INTERIOR",
+            "w_coupling": "BOUNDARY"
+          }
+        }
+      }
+    },
+    "lost_time_0s_unconstrained": {
+      "metadata": {
+        "lost_time_sec": 0,
+        "headline_min_green": false,
+        "training_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "sim_duration_sec": 600
+      },
+      "fixed": {
+        "balanced": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 20,
+          "mean_wait_training": 88.12
+        },
+        "moderate_load": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 15,
+          "mean_wait_training": 24.43
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 25.14
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 26.08
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 47.65
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 15,
+          "mean_wait_training": 45.71
+        },
+        "rush_hour": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 10,
+          "mean_wait_training": 71.79
+        },
+        "surge_accident": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 90.16
+        }
+      },
+      "fixed_tuned": {
+        "balanced": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 20,
+          "mean_wait_training": 88.12
+        },
+        "moderate_load": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 15,
+          "mean_wait_training": 24.43
+        },
+        "directional_moderate": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 25.14
+        },
+        "incident_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 20,
+          "mean_wait_training": 26.08
+        },
+        "shifting_demand": {
+          "cycle_len_sec": 60,
+          "ns_green_sec": 25,
+          "mean_wait_training": 47.65
+        },
+        "surge_moderate": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 15,
+          "mean_wait_training": 45.71
+        },
+        "rush_hour": {
+          "cycle_len_sec": 40,
+          "ns_green_sec": 10,
+          "mean_wait_training": 71.79
+        },
+        "surge_accident": {
+          "cycle_len_sec": 30,
+          "ns_green_sec": 10,
+          "mean_wait_training": 90.16
+        }
+      },
+      "rule_based": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 104.31
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 9.64
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 14.39
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 9.84
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 13.43
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 32.51
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 75.7
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 104.9
+        }
+      },
+      "rule_based_tuned": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 104.31
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 9.64
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 14.39
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 9.84
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 13.43
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 32.51
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 75.7
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 104.9
+        }
+      },
+      "max_pressure": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 100.19
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 12.13
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 18.19
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 12.67
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 16.62
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 32.59
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 73.16
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 99.24
+        }
+      },
+      "max_pressure_tuned": {
+        "balanced": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 100.19
+        },
+        "moderate_load": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 12.13
+        },
+        "directional_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 18.19
+        },
+        "incident_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 12.67
+        },
+        "shifting_demand": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 16.62
+        },
+        "surge_moderate": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 32.59
+        },
+        "rush_hour": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 2,
+          "mean_wait_training": 73.16
+        },
+        "surge_accident": {
+          "eval_interval_sec": 2,
+          "min_green_sec": 5,
+          "hysteresis": 0,
+          "mean_wait_training": 99.24
+        }
+      },
+      "hybrid": {
+        "balanced": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 92.1
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 7.39
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 10.0
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.05,
+          "mean_wait_training": 7.63
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 9.65
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.2,
+          "mean_wait_training": 27.55
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 67.89
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 89.92
+        }
+      },
+      "hybrid_tuned": {
+        "balanced": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 92.1
+        },
+        "moderate_load": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 7.39
+        },
+        "directional_moderate": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 10.0
+        },
+        "incident_moderate": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.05,
+          "mean_wait_training": 7.63
+        },
+        "shifting_demand": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.0,
+          "mean_wait_training": 9.65
+        },
+        "surge_moderate": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.2,
+          "mean_wait_training": 27.55
+        },
+        "rush_hour": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 67.89
+        },
+        "surge_accident": {
+          "reopt_interval_sec": 2,
+          "w_switch": 0.0,
+          "w_throughput_coupling": 0.5,
+          "mean_wait_training": 89.92
+        }
+      },
+      "boundary_audits": {
+        "balanced": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "moderate_load": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "directional_moderate": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "incident_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "shifting_demand": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_moderate": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "INTERIOR"
+          }
+        },
+        "rush_hour": {
+          "fixed": {
+            "cycle_len_sec": "INTERIOR "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "INTERIOR"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        },
+        "surge_accident": {
+          "fixed": {
+            "cycle_len_sec": "ON LOWER BOUNDARY "
+          },
+          "rule_based": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "max_pressure": {
+            "eval_interval": "BOUNDARY",
+            "min_green": "BOUNDARY",
+            "hysteresis": "BOUNDARY"
+          },
+          "hybrid": {
+            "reopt_interval": "BOUNDARY",
+            "w_switch": "BOUNDARY",
+            "w_coupling": "BOUNDARY"
+          }
+        }
+      }
+    }
+  }
+}

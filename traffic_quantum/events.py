@@ -36,6 +36,7 @@ class TrafficEvent:
     surge_multiplier: float = 3.0
     ambulance_origin: Optional[int] = None
     ambulance_destination: Optional[int] = None
+    reduced_capacity: Optional[int] = None
     active: bool = False
     resolved: bool = False
 
@@ -82,7 +83,7 @@ class EventManager:
 
         elif event.event_type == EventType.ACCIDENT and event.target_edge:
             u, v = event.target_edge
-            self.network.set_edge_status(u, v, "reduced")
+            self.network.set_edge_status(u, v, "reduced", capacity=event.reduced_capacity)
 
         elif event.event_type == EventType.CONGESTION_SURGE and event.target_entry:
             self.active_surges[event.target_entry] = event.surge_multiplier

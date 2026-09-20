@@ -51,7 +51,7 @@ from traffic_quantum.security import SecurityService
 from traffic_quantum.simulator import TrafficSimulator
 from traffic_quantum.scenarios import SCENARIO_SPECS
 
-
+# Hardware audit schema validation specification (for any future experimental execution audits)
 REQUIRED_HARDWARE_FIELDS = [
     "provider",
     "exact_device_name",
@@ -61,34 +61,6 @@ REQUIRED_HARDWARE_FIELDS = [
     "shots",
 ]
 
-
-def load_latest_qpu_run():
-    """Loads the most recently recorded real-QPU hardware execution result, if any.
-    
-    Refuses to load/display any file as hardware if mandatory audit fields are missing.
-    """
-    results_dir = os.path.join(os.path.dirname(__file__), "results")
-    if not os.path.exists(results_dir):
-        return None
-    pattern = os.path.join(results_dir, "qpu_run_*.json")
-    files = glob.glob(pattern)
-    if not files:
-        return None
-    latest_file = max(files, key=os.path.getmtime)
-    try:
-        with open(latest_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            data["_filepath"] = latest_file
-            
-            # Audit field validation: Refuse to display if any mandatory hardware audit field is missing
-            missing = [f for f in REQUIRED_HARDWARE_FIELDS if not data.get(f)]
-            if missing:
-                return {
-                    "_error": f"Refusing to display {os.path.basename(latest_file)} as hardware: missing required audit fields: {', '.join(missing)}"
-                }
-            return data
-    except Exception:
-        return None
 
 
 def load_manifest_data():
@@ -113,61 +85,6 @@ def load_preemption_tradeoff_data():
         except Exception:
             return None
     return None
-
-
-def render_recorded_qpu_section():
-    qpu_run_data = load_latest_qpu_run()
-    if qpu_run_data is None:
-        return
-    if "_error" in qpu_run_data:
-        return
-
-    dev_name = str(qpu_run_data.get("exact_device_name", "Unknown Device"))
-    shots_val = qpu_run_data.get("shots", 0)
-    job_id = str(qpu_run_data.get("task_or_job_id", "N/A"))
-    date_str = str(qpu_run_data.get("submission_timestamp", ""))
-    metrics_dict = qpu_run_data.get("metrics", {})
-
-    best_samples = metrics_dict.get("best_of_samples", {})
-    hw_best = best_samples.get("hardware", {})
-    approx_ratio = hw_best.get("approximation_ratio", 0.0)
-
-    opt_probs = metrics_dict.get("probability_mass_on_exact_optimum", {})
-    opt_hw = opt_probs.get("hardware", 0.0)
-    opt_sim = opt_probs.get("ideal_simulator", 0.0)
-    tvd_val = metrics_dict.get("total_variation_distance", 0.0)
-
-    st.caption(f"Hardware Run Source: `{os.path.basename(qpu_run_data.get('_filepath', ''))}` | Label: {qpu_run_data.get('label', '')}")
-
-    qcol1, qcol2, qcol3, qcol4 = st.columns(4)
-    qcol1.metric("Device / QPU", dev_name.split("/")[-1] if "/" in dev_name else dev_name)
-    qcol2.metric("Task / Job ID", job_id[:18] + ("..." if len(job_id) > 18 else ""))
-    qcol3.metric("Shots", f"{shots_val:,}")
-    qcol4.metric("Approximation Ratio", f"{approx_ratio:.4f}")
-
-    qrow1, qrow2 = st.columns([5, 7])
-    with qrow1:
-        st.markdown("##### Execution Telemetry")
-        st.write(f"**Provider:** `{qpu_run_data.get('provider', '').upper()}`")
-        st.write(f"**Exact Device/ARN:** `{dev_name}`")
-        st.write(f"**Task/Job ID:** `{job_id}`")
-        st.write(f"**Submission Date (UTC):** `{date_str}`")
-        st.write(f"**Compiled Circuit Depth:** `{qpu_run_data.get('compiled_depth', 'N/A')}`")
-        st.write(f"**Two-Qubit Gates:** `{qpu_run_data.get('two_qubit_gate_count', 'N/A')}`")
-        st.write(f"**Git Commit:** `{qpu_run_data.get('git_commit_hash', 'unknown')[:8]}`")
-        st.write(f"**Optimum Hit (HW vs Sim):** `{opt_hw:.4f}` vs `{opt_sim:.4f}`")
-        st.write(f"**Total Variation Distance (TVD):** `{tvd_val:.4f}`")
-        hits_opt = metrics_dict.get("top_k_selection", {}).get("hits_exact_optimum", False)
-        st.write(f"**Top-4 Hits Exact Optimum:** `{'Yes' if hits_opt else 'No'}`")
-
-    with qrow2:
-        st.markdown("##### Hardware vs Ideal Simulator Distribution")
-        plot_rel = qpu_run_data.get("comparison_plot", "")
-        plot_abs = os.path.join(os.path.dirname(__file__), plot_rel) if plot_rel else None
-        if plot_abs and os.path.exists(plot_abs):
-            st.image(plot_abs, caption=f"Sampled on {dev_name}, angles trained on simulator", width='stretch')
-        else:
-            st.info("No comparison chart PNG generated for this recorded run.")
 
 
 # --- PAGE CONFIGURATION & STYLING ---
@@ -430,7 +347,16 @@ init_session_state()
 
 # --- SIDEBAR CONTROLS ---
 with st.sidebar:
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); border: 1px solid #10b981; border-radius: 8px; padding: 12px; margin-bottom: 14px; text-align: center;">
+        <div style="color: #6ee7b7; font-weight: 700; font-size: 0.95rem; margin-bottom: 6px;">🚑 EMS Paramedic Portal</div>
+        <div style="color: #a7f3d0; font-size: 0.78rem; margin-bottom: 10px;">Ambulance driver registration, vehicle authentication & live tactical HUD.</div>
+        <a href="/?page=hospital_maps" target="_blank" style="display: inline-block; width: 100%; background: #10b981; color: #022c22; font-weight: 800; font-size: 0.82rem; padding: 7px 12px; border-radius: 6px; text-decoration: none; box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);">Open Driver Console ↗</a>
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("### Architectural Block Theme")
+
     theme_choices = [
         "Vibrant Coral (High Contrast)",
         "Slate Dark (Executive)",
@@ -1332,7 +1258,7 @@ with tab_driver:
                         soft_list = po_data.get("soft_preemption", [])
                         matched = min(soft_list, key=lambda x: abs(x.get("w_emerg", 0) - w_curr)) if soft_list else {}
                         saved_val = matched.get("amb_time_saved")
-                        saved_str = f"~{saved_val:.1f}s saved (soft corridor W={matched.get('w_emerg')})" if saved_val is not None else "not available"
+                        saved_str = f"~{saved_val:.1f}s saved (soft corridor W_emerg from config = {w_curr})" if saved_val is not None else f"W_emerg from config: {w_curr}"
                     st.info(f"**Measured Delay Avoided**: {saved_str} vs un-preempted baseline (from evaluation seeds).")
                 else:
                     st.info("**Measured Delay Avoided**: not available (results/preemption_tradeoff.json missing).")
@@ -1408,15 +1334,78 @@ with tab_quantum:
             fig_p.update_layout(margin=dict(l=20, r=20, t=30, b=20), height=380)
             st.plotly_chart(fig_p, width='stretch')
 
-            qcard1, qcard2, qcard3 = st.columns(3)
-            with qcard1:
-                st.info("")
-            with qcard2:
-                st.info("")
-            with qcard3:
-                st.info("")
+    # Section: "Why this decision?" Explainability Panel for Current Tick
+    st.markdown("---")
+    st.markdown("#### 🔍 Explainability: Why This Decision? (Current Tick Breakdown)")
+    st.caption("Live breakdown of linear objective weights, switching costs, emergency corridor biases, and network coupling terms determining optimal phase choice for each intersection.")
+
+    dec_data = []
+    w_queue = st.session_state.config.qubo.w_queue
+    w_ped = getattr(st.session_state.config.qubo, "w_pedestrian", 2.0)
+    w_switch = getattr(st.session_state.config.qubo, "w_switch", 2.5)
+    w_emerg = st.session_state.config.qubo.w_emergency
+    curr_biases = em_mgr.get_emergency_biases(sim) if em_mgr else {}
+
+    for i in range(net.num_intersections):
+        j_name = f"Junction {junction_letters[i]}"
+        q_lens = sim.get_approach_queue_lengths(i)
+        q_ns = q_lens.get("N", 0) + q_lens.get("S", 0)
+        q_ew = q_lens.get("E", 0) + q_lens.get("W", 0)
+        queue_diff_cost = w_queue * (q_ns - q_ew)
+
+        ped_counts = sim.get_pedestrian_counts(i) if hasattr(sim, "get_pedestrian_counts") else {"NS": 0, "EW": 0}
+        ped_ns = ped_counts.get("NS", 0)
+        ped_ew = ped_counts.get("EW", 0)
+        ped_diff_cost = w_ped * (ped_ns - ped_ew)
+
+        curr_p = sim.signal_phases.get(i, 0)
+        curr_p_str = "NS Green" if curr_p == 0 else "EW Green"
+        switch_cost = w_switch if curr_p == 0 else -w_switch
+
+        emerg_dir = curr_biases.get(i, "None")
+        emerg_impact = f"{emerg_dir} (+{w_emerg:.0f})" if emerg_dir != "None" else "None"
+
+        coupling_pull = float(sum(Q[i, j] for j in range(net.num_intersections) if j != i))
+        diag_q = float(Q[i, i])
+        chosen_phase = "NS Green (x=0)" if diag_q > 0 or (diag_q == 0 and q_ns >= q_ew) else "EW Green (x=1)"
+        if emerg_dir == "NS":
+            chosen_phase = "NS Green (Preempted)"
+        elif emerg_dir == "EW":
+            chosen_phase = "EW Green (Preempted)"
+
+        if emerg_dir != "None":
+            primary_reason = f"🚨 Emergency Preemption ({emerg_dir})"
+        elif abs(queue_diff_cost) >= max(abs(ped_diff_cost), abs(switch_cost), abs(coupling_pull)):
+            primary_reason = f"🚗 Heavy {'N-S' if q_ns > q_ew else 'E-W'} Queue ({max(q_ns, q_ew)} veh)"
+        elif abs(ped_diff_cost) >= max(abs(switch_cost), abs(coupling_pull)):
+            primary_reason = f"🚶 Pedestrian Urgency ({max(ped_ns, ped_ew)} peds)"
+        elif abs(switch_cost) > 0:
+            primary_reason = f"🔒 Phase Persistence ({curr_p_str})"
         else:
-            st.info("")
+            primary_reason = "🌐 Balanced Network Flow"
+
+        dec_data.append({
+            "Intersection": j_name,
+            "Queue (NS / EW)": f"{q_ns} / {q_ew}",
+            "Queue Weight": f"{queue_diff_cost:+.2f}",
+            "Pedestrians (NS / EW)": f"{ped_ns} / {ped_ew}",
+            "Ped Weight": f"{ped_diff_cost:+.2f}",
+            "Switching Bias": f"{curr_p_str} ({switch_cost:+.1f})",
+            "Emergency Bias": emerg_impact,
+            "Coupling Pull (Q_ij)": f"{coupling_pull:+.2f}",
+            "Net Diagonal (Q_ii)": f"{diag_q:+.2f}",
+            "Chosen Phase": chosen_phase,
+            "Dominant Driver": primary_reason,
+        })
+
+    st.dataframe(pd.DataFrame(dec_data), width='stretch', hide_index=True)
+
+    st.info(
+        "🔮 **Future Scope**: Deployment of the QAOA variational circuit to physical quantum processors "
+        "(via the experimental `scripts/run_on_qpu.py` runner) and connecting to real-world traffic signal "
+        "cabinets via NTCIP 1202 / NEMA TS2 protocols are future roadmap extensions. "
+        "All optimizations in this dashboard run strictly on local classical simulators."
+    )
 
 
 
@@ -1962,7 +1951,11 @@ with tab_evidence:
         except Exception:
             st.caption("Ablation study data could not be parsed.")
 
-    render_recorded_qpu_section()
+    st.info(
+        "🔮 **Future Scope**: Deployment of the QAOA variational circuit to physical quantum hardware "
+        "and field integration with NTCIP 1202 physical signal controller hardware are future scope items. "
+        "All reported empirical benchmarks are derived strictly from local classical simulation."
+    )
 
 
 

@@ -1,151 +1,142 @@
 {
-  "ablation_a_greedy_comparison": {
-    "total_rounds": 2400,
-    "different_rounds": 322,
-    "fraction_different": 0.13416666666666666,
-    "avg_bits_when_diff": 1.0838509316770186,
-    "avg_bits_overall": 0.14541666666666667
+  "metadata": {
+    "eval_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119
+    ],
+    "qaoa_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104
+    ],
+    "sim_duration_sec": 600
   },
-  "ablation_b_uncoupled": {
-    "moderate_load": {
-      "full_wait_mean": 18.064,
-      "full_wait_ci": [
-        17.812156883800398,
-        18.315843116199602
-      ],
-      "uncoupled_wait_mean": 17.4245,
-      "uncoupled_wait_ci": [
-        17.17201192930797,
-        17.676988070692026
-      ],
-      "paired_diff_mean": -0.6395000000000003,
-      "paired_diff_ci": [
-        -0.8592516569751327,
-        -0.41974834302486785
-      ]
-    },
-    "rush_hour": {
-      "full_wait_mean": 80.53,
-      "full_wait_ci": [
-        77.7226912299408,
-        83.3373087700592
-      ],
-      "uncoupled_wait_mean": 80.876,
-      "uncoupled_wait_ci": [
-        78.28528081061503,
-        83.46671918938497
-      ],
-      "paired_diff_mean": 0.34599999999999936,
-      "paired_diff_ci": [
-        -0.34908602575468056,
-        1.0410860257546792
-      ]
+  "throughput_coupling": {
+    "nonzero_J_ij_uncoupled": 7,
+    "nonzero_J_ij_coupled": 7,
+    "findings_by_regime": {
+      "balanced": {
+        "w_tc_tuned": 0.5,
+        "reopt_sec": 15,
+        "w_switch": 5.0
+      },
+      "moderate_load": {
+        "w_tc_tuned": 0.0,
+        "reopt_sec": 10,
+        "w_switch": 2.5
+      },
+      "directional_moderate": {
+        "w_tc_tuned": 0.1,
+        "reopt_sec": 10,
+        "w_switch": 1.0
+      },
+      "incident_moderate": {
+        "w_tc_tuned": 0.05,
+        "reopt_sec": 10,
+        "w_switch": 0.0
+      },
+      "shifting_demand": {
+        "w_tc_tuned": 0.1,
+        "reopt_sec": 10,
+        "w_switch": 1.0
+      },
+      "surge_moderate": {
+        "w_tc_tuned": 0.5,
+        "reopt_sec": 15,
+        "w_switch": 0.0
+      },
+      "rush_hour": {
+        "w_tc_tuned": 0.5,
+        "reopt_sec": 15,
+        "w_switch": 1.0
+      },
+      "surge_accident": {
+        "w_tc_tuned": 0.5,
+        "reopt_sec": 15,
+        "w_switch": 0.0
+      }
     }
   },
-  "ablation_c_coupling_sweep": {
-    "sweep_results": [
-      {
-        "avg_wait": 31.235000000000003,
-        "w_coord": 0.0,
-        "w_spillback": 0.5
-      },
-      {
-        "avg_wait": 31.235000000000003,
-        "w_coord": 0.0,
-        "w_spillback": 1.0
-      },
-      {
-        "avg_wait": 31.235000000000003,
-        "w_coord": 0.0,
-        "w_spillback": 2.0
-      },
-      {
-        "avg_wait": 31.242,
-        "w_coord": 0.0,
-        "w_spillback": 0.0
-      },
-      {
-        "avg_wait": 31.719,
-        "w_coord": 0.2,
-        "w_spillback": 0.0
-      },
-      {
-        "avg_wait": 31.719,
-        "w_coord": 0.2,
-        "w_spillback": 0.5
-      },
-      {
-        "avg_wait": 31.719,
-        "w_coord": 0.2,
-        "w_spillback": 1.0
-      },
-      {
-        "avg_wait": 31.719,
-        "w_coord": 0.2,
-        "w_spillback": 2.0
-      },
-      {
-        "avg_wait": 32.346,
-        "w_coord": 0.5,
-        "w_spillback": 0.0
-      },
-      {
-        "avg_wait": 32.346,
-        "w_coord": 0.5,
-        "w_spillback": 0.5
-      },
-      {
-        "avg_wait": 32.346,
-        "w_coord": 0.5,
-        "w_spillback": 1.0
-      },
-      {
-        "avg_wait": 32.346,
-        "w_coord": 0.5,
-        "w_spillback": 2.0
-      },
-      {
-        "avg_wait": 32.876,
-        "w_coord": 1.0,
-        "w_spillback": 2.0
-      },
-      {
-        "avg_wait": 32.88,
-        "w_coord": 1.0,
-        "w_spillback": 0.0
-      },
-      {
-        "avg_wait": 32.88,
-        "w_coord": 1.0,
-        "w_spillback": 0.5
-      },
-      {
-        "avg_wait": 32.88,
-        "w_coord": 1.0,
-        "w_spillback": 1.0
-      },
-      {
-        "avg_wait": 33.714999999999996,
-        "w_coord": 2.0,
-        "w_spillback": 0.0
-      },
-      {
-        "avg_wait": 33.714999999999996,
-        "w_coord": 2.0,
-        "w_spillback": 0.5
-      },
-      {
-        "avg_wait": 33.714999999999996,
-        "w_coord": 2.0,
-        "w_spillback": 1.0
-      },
-      {
-        "avg_wait": 33.714999999999996,
-        "w_coord": 2.0,
-        "w_spillback": 2.0
-      }
-    ],
-    "default_score": 31.719,
-    "zero_score": 31.242
+  "feature_ablations": {
+    "moderate_load": {
+      "hybrid_base_delay": 25.61,
+      "with_lookahead_delay": 26.74,
+      "lookahead_delta": 1.13,
+      "with_downstream_space_delay": 26.53,
+      "space_delta": 0.92,
+      "with_wait_weighted_delay": 26.59,
+      "wait_weighted_delta": 0.98
+    },
+    "rush_hour": {
+      "hybrid_base_delay": 96.44,
+      "with_lookahead_delay": 96.44,
+      "lookahead_delta": -0.0,
+      "with_downstream_space_delay": 96.51,
+      "space_delta": 0.07,
+      "with_wait_weighted_delay": 96.44,
+      "wait_weighted_delta": 0.0
+    }
+  },
+  "qaoa_quality": {
+    "balanced": {
+      "mean_approximation_ratio": 0.9165,
+      "exact_optimum_hit_rate": 0.5375,
+      "total_optimizations_sampled": 400
+    },
+    "moderate_load": {
+      "mean_approximation_ratio": 0.9653,
+      "exact_optimum_hit_rate": 0.72,
+      "total_optimizations_sampled": 600
+    },
+    "directional_moderate": {
+      "mean_approximation_ratio": 0.9551,
+      "exact_optimum_hit_rate": 0.6783,
+      "total_optimizations_sampled": 600
+    },
+    "incident_moderate": {
+      "mean_approximation_ratio": 0.984,
+      "exact_optimum_hit_rate": 0.9,
+      "total_optimizations_sampled": 600
+    },
+    "shifting_demand": {
+      "mean_approximation_ratio": 0.9611,
+      "exact_optimum_hit_rate": 0.7,
+      "total_optimizations_sampled": 600
+    },
+    "surge_moderate": {
+      "mean_approximation_ratio": 0.9424,
+      "exact_optimum_hit_rate": 0.635,
+      "total_optimizations_sampled": 400
+    },
+    "rush_hour": {
+      "mean_approximation_ratio": 0.925,
+      "exact_optimum_hit_rate": 0.6,
+      "total_optimizations_sampled": 400
+    },
+    "surge_accident": {
+      "mean_approximation_ratio": 0.9382,
+      "exact_optimum_hit_rate": 0.62,
+      "total_optimizations_sampled": 400
+    }
   }
 }

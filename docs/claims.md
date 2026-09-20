@@ -82,11 +82,19 @@ This document establishes the official scientific boundary for the Quantum Traff
 
 ---
 
-### Claim 7: Physical QPU Runner is Fully Implemented with Strict Guardrails
-- **Pitch Statement**: "The repository includes an audited, cost-capped runner for Amazon Braket QPUs (`scripts/run_hardware_braket.py`) that enforces mandatory `--confirm` flags, dry-run circuit inspection, and zero secret logging."
-- **Evidence & Data**:
-  - `scripts/run_hardware_braket.py`: Refuses execution without explicit confirmation, validates audit schemas, supports dry-run mode.
-  - `dashboard.py`: Renders recorded hardware results read-only from `results/qpu_run_*.json` only when all mandatory audit fields are present.
+### Claim 7 (Exploratory Finding): P95 Tail Latency Reduction in Surges
+- **Status**: **Exploratory**. This finding is hypothesis-generating and subject to multiple comparisons across 8 regimes $\times$ 4 metrics (32 total combinations). It must not be cited as a primary confirmatory superiority claim.
+- **Pitch Statement**: "In exploratory secondary analyses of bursty traffic surges, the Hybrid controller observed lower 95th-percentile vehicle delay than tuned baselines, indicating potential tail-risk mitigation under non-stationary queue shocks."
+- **Evidence & Data** (Evaluated across seeds `100`–`119`, $n=20$ at 2s lost time):
+  - **Surge Moderate**: Hybrid (BF) $P_{95}$ wait `113.68s` vs Fixed (tuned) `123.75s` (paired difference `-10.07s`, 95% CI `[-13.25, -6.89]s`) and vs Rule-Based (tuned) `119.63s` (paired difference `-5.95s`, 95% CI `[-8.74, -3.16]s`).
+  - **Surge + Incident**: Hybrid (BF) $P_{95}$ wait `241.38s` vs Fixed (tuned) `250.24s` (paired difference `-8.86s`, 95% CI `[-12.75, -4.96]s`) and vs Rule-Based (tuned) `330.75s` (paired difference `-89.37s`, 95% CI `[-97.04, -81.70]s`).
+  - **Correction Context**: Across 32 regime $\times$ metric combinations, P95 improvements in burst regimes reflect adaptive spillback penalties preventing runaway queues, but average delay in these regimes remains won by Fixed (tuned) or Max-Pressure (tuned).
+
+---
+
+### Future Scope Items (Explicitly Not Claimed)
+- **Physical Quantum Hardware Execution**: An experimental runner (`scripts/run_on_qpu.py`) exists for circuit compilation against Amazon Braket and IBM Quantum. However, no physical QPU jobs were run for any result in this repository. All reported findings are based strictly on noiseless or density-matrix quantum simulators.
+- **Physical Traffic Signal Hardware**: The abstract `SignalControllerInterface` provides the architecture for NTCIP 1202 controller cabinets, but no physical traffic hardware is connected. All tests use discrete simulation.
 
 ---
 

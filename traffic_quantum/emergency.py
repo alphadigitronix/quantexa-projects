@@ -363,3 +363,39 @@ class EmergencyCorridorManager:
                 simulator.signal_phases[node] = p
 
         return biases
+
+    def get_emergency_biases(self, simulator: Optional[TrafficSimulator] = None) -> Dict[int, str]:
+        """Returns {node_id: 'NS'/'EW'} for nodes where ambulance ETA <= eta_threshold without advancing positions."""
+        speed_mult = self.config.emergency.speed_multiplier
+        eta_threshold = self.config.emergency.eta_threshold_sec
+        candidate_biases: Dict[int, List[Tuple[float, int, str, int]]] = {}
+
+        for mission in self.active_missions:
+            if mission.completed or mission.current_index >= len(mission.path) - 1:
+                continue
+
+            u = mission.path[mission.current_index]
+            v = mission.path[mission.current_index + 1]
+            edge_time = self.network.graph[u][v]["free_flow_travel_time"] / speed_mult
+            cumulative_eta = max(0.0, edge_time - mission.current_edge_progress_sec)
+
+            for idx in range(mission.current_index, len(mission.path) - 1):
+                curr_node = mission.path[idx]
+                next_node = mission.path[idx + 1]
+                r_dir = self._determine_required_direction(curr_node, next_node)
+
+                if cumulative_eta <= eta_threshold:
+                    if curr_node not in candidate_biases:
+                        candidate_biases[curr_node] = []
+                    candidate_biases[curr_node].append(
+                        (-mission.priority, cumulative_eta, r_dir, mission.id)
+                    )
+
+                next_edge = self.network.graph[curr_node][next_node]
+                cumulative_eta += next_edge["free_flow_travel_time"] / speed_mult
+
+        biases: Dict[int, str] = {}
+        for node, candidates in candidate_biases.items():
+            candidates.sort(key=lambda item: (item[0], item[1]))
+            biases[node] = candidates[0][2]
+        return biases

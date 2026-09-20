@@ -26,6 +26,7 @@ class QAOATrafficSolver:
         self.p = self.config.qaoa.p_layers
         self.dev = qml.device(self.config.qaoa.device_name, wires=self.n)
         self.warm_start_params: Optional[np.ndarray] = None
+        self.previous_solution: Optional[np.ndarray] = None
         self.precomputed_bitstrings = self._generate_all_bitstrings(self.n)
 
     @staticmethod
@@ -39,8 +40,9 @@ class QAOATrafficSolver:
         return bitstrings
 
     def reset_cache(self) -> None:
-        """Clears cached warm-start parameters."""
+        """Clears cached warm-start parameters and previous solution state."""
         self.warm_start_params = None
+        self.previous_solution = None
 
     def solve(
         self,
@@ -139,39 +141,80 @@ class QAOATrafficSolver:
 
         # 8. Top-k bitstring selection
         top_k = min(self.config.qaoa.top_k_bitstrings, len(final_probs))
-        top_indices = np.argsort(final_probs)[::-1][:top_k]
+        top_indices = list(np.argsort(final_probs)[::-1][:top_k])
+
+        # Seeding candidate set with previous solution if enabled
+        if getattr(self.config.qaoa, "seed_with_previous_solution", False) and self.previous_solution is not None:
+            prev_idx = None
+            for idx in range(len(all_x)):
+                if np.array_equal(all_x[idx], self.previous_solution):
+                    prev_idx = idx
+                    break
+            if prev_idx is not None and prev_idx not in top_indices:
+                top_indices.append(prev_idx)
 
         best_idx = top_indices[0]
         best_cost = costs[best_idx]
 
-        # Inspect top-k most probable to find the lowest-cost bitstring
+        # Inspect candidate pool to find the lowest-cost bitstring
         for idx in top_indices:
             if costs[idx] < best_cost:
                 best_cost = costs[idx]
                 best_idx = idx
 
-        best_bitstring = all_x[best_idx]
+        raw_best_bitstring = all_x[best_idx].copy()
+        raw_best_cost = float(best_cost)
+
+        # 8b. Classical Polish (1-bit-flip local search on QUBO cost)
+        do_polish = getattr(self.config.qaoa, "qaoa_polish", False)
+        polished_bitstring = raw_best_bitstring.copy()
+        polished_cost = raw_best_cost
+
+        if do_polish:
+            improved = True
+            while improved:
+                improved = False
+                for bit_i in range(self.n):
+                    cand = polished_bitstring.copy()
+                    cand[bit_i] = 1 - cand[bit_i]
+                    c_cand = TrafficQUBOBuilder.evaluate_qubo(Q, C0, cand)
+                    if c_cand < polished_cost - 1e-6:
+                        polished_cost = c_cand
+                        polished_bitstring = cand
+                        improved = True
+
+        selected_bitstring = polished_bitstring if do_polish else raw_best_bitstring
+        selected_cost = polished_cost if do_polish else raw_best_cost
+        self.previous_solution = selected_bitstring.copy()
 
         # 9. Approximation ratio and exact optimum comparison
         approx_ratio = 1.0
         found_exact = True
+        raw_approx_ratio = 1.0
+        raw_found_exact = True
+
         if exact_cost is not None:
-            # Shift costs so best cost >= 0 for a meaningful ratio
             min_c = np.min(costs)
             max_c = np.max(costs)
             range_c = max_c - min_c if max_c > min_c else 1.0
             
-            # Standard approximation ratio: (max - qaoa) / (max - min)
-            approx_ratio = float((max_c - best_cost) / range_c)
-            found_exact = bool(abs(best_cost - exact_cost) < 1e-4)
+            approx_ratio = float((max_c - selected_cost) / range_c)
+            found_exact = bool(abs(selected_cost - exact_cost) < 1e-4)
+
+            raw_approx_ratio = float((max_c - raw_best_cost) / range_c)
+            raw_found_exact = bool(abs(raw_best_cost - exact_cost) < 1e-4)
 
         return {
             "solver": "qaoa",
-            "best_bitstring": best_bitstring,
-            "best_cost": float(best_cost),
+            "best_bitstring": selected_bitstring,
+            "best_cost": float(selected_cost),
+            "raw_best_bitstring": raw_best_bitstring,
+            "raw_best_cost": float(raw_best_cost),
             "exact_cost": float(exact_cost) if exact_cost is not None else None,
             "approximation_ratio": round(approx_ratio, 4),
             "found_exact_optimum": found_exact,
+            "raw_approximation_ratio": round(raw_approx_ratio, 4),
+            "raw_found_exact_optimum": raw_found_exact,
             "probabilities": final_probs,
             "top_indices": top_indices,
             "optimal_gammas": optimal_angles[0].tolist(),
@@ -179,3 +222,4 @@ class QAOATrafficSolver:
             "p_layers": self.p,
             "qubits": self.n,
         }
+

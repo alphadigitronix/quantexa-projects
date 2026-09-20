@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Standalone Real-Quantum-Hardware QAOA Execution Script for Urban Traffic Signals.
 
+EXPERIMENTAL / FUTURE SCOPE: not used for any reported result.
+No physical quantum hardware was executed for any result in this repository.
+All reported results in this project are derived strictly from classical simulation.
+
 Executes a single QAOA circuit on real quantum hardware (AWS Braket or IBM Quantum)
 using pre-trained variational angles from the noiseless classical simulator.
 

@@ -245,11 +245,12 @@ class TrafficSimulator:
         if getattr(self, "manual_traffic_mode", False):
             return
         custom_rates = getattr(self, "boundary_arrival_rates", None)
+        active_rates = custom_rates(self.current_tick) if callable(custom_rates) else custom_rates
         for node_id, approach in self.boundary_approaches:
-            if custom_rates and (node_id, approach) in custom_rates:
-                rate = custom_rates[(node_id, approach)]
-            elif custom_rates and approach in custom_rates:
-                rate = custom_rates[approach]
+            if active_rates and (node_id, approach) in active_rates:
+                rate = active_rates[(node_id, approach)]
+            elif active_rates and approach in active_rates:
+                rate = active_rates[approach]
             else:
                 rate = self.config.simulation.base_arrival_rate
             if self.rng.random() < rate:

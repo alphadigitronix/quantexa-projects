@@ -86,15 +86,28 @@ class QUBOConfig:
     w_throughput_coupling: float = 0.0  # Optional quadratic link-discharge coupling (default off)
     spillback_threshold: float = 0.80  # Queue / capacity fraction considered spillback hazard
 
+    # Lookahead features (default off for backwards reproducibility)
+    use_in_transit_lookahead: bool = False
+    w_in_transit_lookahead: float = 0.5
+    use_downstream_space: bool = False
+    w_downstream_space: float = 0.5
+
+    # Objective alignment: wait-weighted queue term (default off)
+    use_wait_weighted_queue: bool = False
+    w_wait_weight: float = 0.05
+
 
 @dataclass
 class QAOAConfig:
     """PennyLane QAOA circuit hyperparameters and optimizer settings."""
     p_layers: int = 2             # QAOA layers (p = 2 or 3)
-    max_iterations: int = 35      # Classical optimizer steps (COBYLA)
+    max_iterations: int = 15      # Classical optimizer steps (COBYLA with warm start)
     step_size: float = 0.1        # Initial step size for optimization
+
     top_k_bitstrings: int = 4     # Inspect top-k most probable bitstrings
     warm_start: bool = True       # Cache optimal angles gamma/beta across rounds
+    seed_with_previous_solution: bool = True  # Seed candidate pool with previous solution
+    qaoa_polish: bool = False     # 1-bit-flip classical local search polish on QUBO cost
     device_name: str = "default.qubit"
     shots: int = 1000             # For measurement sampling
 

@@ -41,10 +41,28 @@ class ScenarioSpec:
     id: str
     name: str
     description: str
-    boundary_rates: Optional[Dict[str, float]]
+    boundary_rates: Optional[object] = None
     accident_edge: Optional[Tuple[int, int]] = None
     accident_start: int = 50
     accident_duration: int = 200
+    saturation_label: str = "Oversaturated"
+    offered_load_rate: float = 0.35
+
+
+def shifting_demand_schedule(t: int) -> Dict[str, float]:
+    """W/E gates 0.30, N/S gates 0.10 for t < 300s; swapped (W/E 0.10, N/S 0.30) for t >= 300s."""
+    if t < 300:
+        return {"W": 0.30, "E": 0.30, "N": 0.10, "S": 0.10}
+    else:
+        return {"W": 0.10, "E": 0.10, "N": 0.30, "S": 0.30}
+
+
+def surge_moderate_schedule(t: int) -> Dict[str, float]:
+    """Moderate baseline (0.18) with a 3x burst at two gates (W, E: 0.54) from t=200 to t=300."""
+    if 200 <= t < 300:
+        return {"W": 0.54, "E": 0.54, "N": 0.18, "S": 0.18}
+    else:
+        return {"W": 0.18, "E": 0.18, "N": 0.18, "S": 0.18}
 
 
 SCENARIO_SPECS: Dict[str, ScenarioSpec] = {
@@ -53,18 +71,59 @@ SCENARIO_SPECS: Dict[str, ScenarioSpec] = {
         name="Balanced Flow (Uniform Demand)",
         description="Symmetric baseline traffic: 0.35 cars/sec across all North, South, East, West gates (oversaturated, queues grow over time).",
         boundary_rates=None,  # Uses default base_arrival_rate (0.35)
+        saturation_label="Oversaturated (Unbounded Queues)",
+        offered_load_rate=1.40,
     ),
     "moderate_load": ScenarioSpec(
         id="moderate_load",
         name="Moderate Load (75-80% Saturation)",
         description="Uncongested baseline: 0.18 cars/sec per gate (~108 cars/min offered load, ~75-80% of measured network capacity).",
         boundary_rates={"W": 0.18, "E": 0.18, "N": 0.18, "S": 0.18},
+        saturation_label="Bounded (75-80% Saturation)",
+        offered_load_rate=0.72,
+    ),
+    "directional_moderate": ScenarioSpec(
+        id="directional_moderate",
+        name="Directional Moderate (Lopsided Bounded)",
+        description="Lopsided bounded demand: W/E gates 0.30 cars/s, N/S gates 0.10 cars/s (~75-85% saturation, tests split adaptation without severe overload).",
+        boundary_rates={"W": 0.30, "E": 0.30, "N": 0.10, "S": 0.10},
+        saturation_label="Bounded (75-85% Saturation, Asymmetric)",
+        offered_load_rate=0.80,
+    ),
+    "incident_moderate": ScenarioSpec(
+        id="incident_moderate",
+        name="Incident Moderate (Moderate + Lane Closure)",
+        description="Moderate arrival rates (0.18 cars/s) plus lane reduction on Link 1->2 (Saidapet to Nandanam) from t=100s to t=400s.",
+        boundary_rates={"W": 0.18, "E": 0.18, "N": 0.18, "S": 0.18},
+        accident_edge=(1, 2),
+        accident_start=100,
+        accident_duration=300,
+        saturation_label="Bounded + Bottleneck Incident",
+        offered_load_rate=0.72,
+    ),
+    "shifting_demand": ScenarioSpec(
+        id="shifting_demand",
+        name="Shifting Demand (Dynamic Corridor Swap)",
+        description="W/E gates 0.30 and N/S gates 0.10 for t < 300s, then swapped (W/E 0.10, N/S 0.30) for t >= 300s (moderate total load).",
+        boundary_rates=shifting_demand_schedule,
+        saturation_label="Bounded (Dynamic Split Swap)",
+        offered_load_rate=0.80,
+    ),
+    "surge_moderate": ScenarioSpec(
+        id="surge_moderate",
+        name="Surge Moderate (Moderate + 3x Arterial Burst)",
+        description="Moderate baseline (0.18) with a 3x burst (0.54) at East-West gates between t=200s and t=300s.",
+        boundary_rates=surge_moderate_schedule,
+        saturation_label="Bounded + Transient Burst",
+        offered_load_rate=0.78,
     ),
     "rush_hour": ScenarioSpec(
         id="rush_hour",
         name="Rush-Hour (3x Arterial Demand)",
-        description="Lopsided demand: East-West arterial gates (W, E) receive 3x traffic (0.45 cars/s) vs cross-streets (0.15 cars/s).",
+        description="Lopsided heavy demand: East-West arterial gates (W, E) receive 3x traffic (0.45 cars/s) vs cross-streets (0.15 cars/s).",
         boundary_rates={"W": 0.45, "E": 0.45, "N": 0.15, "S": 0.15},
+        saturation_label="Oversaturated (Arterial Dominance)",
+        offered_load_rate=1.20,
     ),
     "surge_accident": ScenarioSpec(
         id="surge_accident",
@@ -74,8 +133,11 @@ SCENARIO_SPECS: Dict[str, ScenarioSpec] = {
         accident_edge=(1, 2),
         accident_start=50,
         accident_duration=200,
+        saturation_label="Oversaturated + Bottleneck Incident",
+        offered_load_rate=1.30,
     ),
 }
+
 
 
 def run_scenario_trial(
@@ -98,7 +160,10 @@ def run_scenario_trial(
 
     # Configure directional arrival rates
     if spec.boundary_rates:
-        sim.boundary_arrival_rates = dict(spec.boundary_rates)
+        if callable(spec.boundary_rates):
+            sim.boundary_arrival_rates = spec.boundary_rates
+        else:
+            sim.boundary_arrival_rates = dict(spec.boundary_rates)
 
     # Schedule scenario incident if applicable
     if spec.accident_edge is not None:
@@ -143,15 +208,21 @@ def run_scenario_trial(
         "controller": ctrl_name,
         "seed": seed,
         "avg_wait_sec": metrics["avg_wait_sec"],
+        "p95_wait_sec": metrics["p95_wait_sec"],
         "max_wait_sec": metrics["max_wait_sec"],
         "throughput_cpm": metrics["throughput_cars_per_min"],
         "avg_queue_cars": metrics["avg_queue_cars"],
+        "max_queue_cars": metrics["max_queue_cars"],
         "fuel_liters": metrics["estimated_fuel_liters"],
         "co2_kg": metrics["estimated_co2_kg"],
         "total_switches": total_phase_switches,
         "completed_cars": len(sim.completed_vehicles),
+        "avg_pedestrian_wait_sec": metrics["avg_pedestrian_wait_sec"],
+        "offered_load_rate": spec.offered_load_rate,
+        "saturation_label": spec.saturation_label,
         "qaoa_ratios": qaoa_ratios,
     }
+
 
 
 def run_all_scenarios_benchmark(

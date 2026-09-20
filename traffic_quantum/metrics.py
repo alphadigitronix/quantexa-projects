@@ -37,8 +37,10 @@ class MetricsEngine:
         total_idle_delay_sec = float(sum(all_waits))
         avg_wait_sec = float(np.mean(all_waits)) if all_waits else 0.0
         max_wait_sec = float(np.max(all_waits)) if all_waits else 0.0
+        p95_wait_sec = float(np.percentile(all_waits, 95)) if all_waits else 0.0
 
         # Throughput
+
         completed_cars = len(simulator.completed_vehicles)
         throughput_cpm = completed_cars / sim_minutes
 
@@ -74,6 +76,7 @@ class MetricsEngine:
             "throughput_cars_per_min": round(throughput_cpm, 2),
             "avg_wait_sec": round(avg_wait_sec, 2),
             "max_wait_sec": round(max_wait_sec, 2),
+            "p95_wait_sec": round(p95_wait_sec, 2),
             "avg_queue_cars": round(avg_queue, 2),
             "max_queue_cars": round(max_queue, 2),
             "total_idle_delay_sec": round(total_idle_delay_sec, 1),

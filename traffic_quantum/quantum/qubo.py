@@ -46,14 +46,44 @@ class TrafficQUBOBuilder:
         spill_thresh = self.config.qubo.spillback_threshold
 
         # 1. Linear queue delay penalty: cost_i = q_EW*(1 - x_i) + q_NS*x_i
+        use_wait_weight = getattr(self.config.qubo, "use_wait_weighted_queue", False)
+        w_wait_weight = getattr(self.config.qubo, "w_wait_weight", 0.05)
+        use_lookahead = getattr(self.config.qubo, "use_in_transit_lookahead", False)
+        w_lookahead = getattr(self.config.qubo, "w_in_transit_lookahead", 0.5)
+
         for i in range(self.n):
             q_lens = simulator.get_approach_queue_lengths(i)
-            q_ns = q_lens.get("N", 0) + q_lens.get("S", 0)
-            q_ew = q_lens.get("E", 0) + q_lens.get("W", 0)
+            
+            if use_wait_weight:
+                # Wait-weighted queue: scale queue by average wait time in queue
+                def get_wait_weighted_q(app: str) -> float:
+                    raw_q = simulator.queues[i].get(app, [])
+                    if not raw_q:
+                        return 0.0
+                    avg_wait = sum(getattr(veh, "wait_ticks", 0) for veh in raw_q) / len(raw_q)
+                    return len(raw_q) * (1.0 + w_wait_weight * avg_wait)
+                
+                q_ns = get_wait_weighted_q("N") + get_wait_weighted_q("S")
+                q_ew = get_wait_weighted_q("E") + get_wait_weighted_q("W")
+            else:
+                q_ns = float(q_lens.get("N", 0) + q_lens.get("S", 0))
+                q_ew = float(q_lens.get("E", 0) + q_lens.get("W", 0))
+
+            # Lookahead: add vehicles currently in transit toward this junction
+            if use_lookahead and hasattr(simulator, "in_transit"):
+                for (u, v), trans_vehs in simulator.in_transit.items():
+                    if v == i and trans_vehs:
+                        target_app = self.network.graph[u][v].get("target_approach", "N")
+                        added_load = w_lookahead * len(trans_vehs)
+                        if target_app in ("N", "S"):
+                            q_ns += added_load
+                        else:
+                            q_ew += added_load
             
             # cost_i = w_queue * [ q_ew + (q_ns - q_ew)*x_i ]
             C0 += w_queue * q_ew
             Q[i, i] += w_queue * (q_ns - q_ew)
+
 
         # 2. Quadratic coupling between connected neighbors for green waves
         for u, v in self.network.graph.edges:
@@ -129,6 +159,30 @@ class TrafficQUBOBuilder:
                         Q[u, v] -= coeff / 2.0
                         Q[v, u] -= coeff / 2.0
 
+        # 3c. Optional downstream-space term for spillback based on remaining capacity
+        use_space = getattr(self.config.qubo, "use_downstream_space", False)
+        w_space = getattr(self.config.qubo, "w_downstream_space", 0.5)
+        if use_space and w_space > 0.0:
+            for u in range(self.n):
+                for v in self.network.graph.neighbors(u):
+                    edge = self.network.graph[u][v]
+                    cap = edge.get("capacity", 20)
+                    if cap <= 0:
+                        continue
+                    target_app = edge.get("target_approach", "N")
+                    current_load = (
+                        len(simulator.in_transit.get((u, v), [])) +
+                        len(simulator.queues[v].get(target_app, []))
+                    )
+                    rem_space = max(0.0, float(cap - current_load)) / float(cap)
+                    space_penalty = w_space * (1.0 - rem_space)
+                    direction = edge.get("direction", "E")
+                    if direction in ("E", "W"):
+                        Q[u, u] += space_penalty
+                    elif direction in ("N", "S"):
+                        C0 += space_penalty
+                        Q[u, u] -= space_penalty
+
         # 4. Emergency Green Corridor preemption bias
         if emergency_biases:
             for node, req_dir in emergency_biases.items():
@@ -183,3 +237,17 @@ class TrafficQUBOBuilder:
     def evaluate_qubo(Q: np.ndarray, C0: float, x: np.ndarray) -> float:
         """Evaluates QUBO cost: x^T Q x + C0."""
         return float(x.T @ Q @ x + C0)
+
+    @staticmethod
+    def count_nonzero_interactions(Q: np.ndarray, tol: float = 1e-6) -> int:
+        """Counts the number of non-zero quadratic interaction terms J_ij (i < j) in the Ising Hamiltonian."""
+        from traffic_quantum.quantum.ising import QUBOToIsingConverter
+        _, J, _ = QUBOToIsingConverter.qubo_to_ising(Q, 0.0)
+        n = Q.shape[0]
+        count = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                if abs(J[i, j]) > tol:
+                    count += 1
+        return count
+

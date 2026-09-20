@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "timestamp": "2026-09-20T05:08:02.703646+00:00",
+    "lost_time_sec": 2,
+    "headline_min_green": true,
+    "training_seeds": [
+      1,
+      2
+    ],
+    "sim_duration_sec": 60
+  },
+  "fixed": {
+    "moderate_load": {
+      "cycle_len_sec": 60,
+      "ns_green_sec": 50,
+      "mean_wait_training": 8.27
+    }
+  },
+  "rule_based": {
+    "moderate_load": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 3,
+      "mean_wait_training": 10.3
+    }
+  },
+  "max_pressure": {
+    "moderate_load": {
+      "eval_interval_sec": 2,
+      "min_green_sec": 10,
+      "hysteresis": 2,
+      "mean_wait_training": 10.41
+    }
+  },
+  "hybrid": {
+    "moderate_load": {
+      "reopt_interval_sec": 10,
+      "w_switch": 5.0,
+      "w_throughput_coupling": 0.2,
+      "mean_wait_training": 9.32
+    }
+  },
+  "boundary_audits": {}
+}
